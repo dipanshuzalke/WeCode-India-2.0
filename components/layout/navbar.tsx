@@ -138,7 +138,7 @@ export function NavBar() {
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/phases/development" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link href="/phases/domains" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">Development</div>
                           <p className="text-sm text-muted-foreground line-clamp-2">Build real-world projects</p>
                         </Link>
@@ -148,19 +148,36 @@ export function NavBar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* Community */}
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/community"
-                    className={cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/community" ? "bg-accent" : "bg-background"
-                    )}
-                  >
-                    Community
-                  </Link>
-                </NavigationMenuLink>
+                <NavigationMenuTrigger>Community</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] lg:grid-row-3">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/community/feed" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium">Feed</div>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Post, Connect & Engage</p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/community/chat" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium">Global Chat</div>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Live, open conversations</p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link href="/community/doubt" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium">Doubt Forum</div>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Solve doubts together</p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
 
               {/* DSA */}
