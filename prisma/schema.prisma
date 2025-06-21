@@ -26,7 +26,8 @@ model User {
   likedPosts CommunityPost[]    @relation("PostLikes")
   comments   CommunityComment[]
 
-  aiRoadmaps AiRoadmapInput[]
+  aiRoadmaps   AiRoadmapInput[]
+  aiInterviews AiInterview[]
 }
 
 model Account {
@@ -126,10 +127,36 @@ model Doubt {
 
 model DoubtResponse {
   id         String   @id @default(uuid())
-  type       String   // 'user_response'
+  type       String // 'user_response'
   doubt_id   String
   username   String
   response   String?
   image_url  String?
   created_at DateTime @default(now())
+}
+
+model AiInterview {
+  id        String              @id @default(uuid())
+  role      String
+  level     String
+  questions String[] // Array of questions
+  techstack String[] // Array of tech stack items
+  createdAt DateTime            @default(now())
+  user      User                @relation(fields: [userId], references: [id])
+  userId    String
+  type      String
+  finalized Boolean             @default(false)
+  feedbacks InterviewFeedback[]
+}
+
+model InterviewFeedback {
+  id                  String      @id @default(uuid())
+  interview           AiInterview @relation(fields: [interviewId], references: [id])
+  interviewId         String
+  totalScore          Int
+  categoryScores      Json
+  strengths           String[]
+  areasForImprovement String[]
+  finalAssessment     String
+  createdAt           DateTime    @default(now())
 }
