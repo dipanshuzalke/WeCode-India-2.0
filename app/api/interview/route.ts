@@ -16,6 +16,24 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   if (body.type === 'interview') {
     const { role, level, questions, techstack, userId, type, finalized } = body;
+    // Check for existing interview with feedback
+    const existingInterview = await prismaClient.aiInterview.findFirst({
+      where: {
+        userId,
+        role,
+        level,
+        techstack: { equals: techstack },
+      },
+      include: {
+        feedbacks: true,
+      },
+    });
+    if (existingInterview && existingInterview.feedbacks && existingInterview.feedbacks.length > 0) {
+      return NextResponse.json({
+        success: false,
+        error: 'You have already completed this interview and received feedback.',
+      }, { status: 400 });
+    }
     try {
       const interview = await createAiInterviewPrisma({
         role,

@@ -1,36 +1,60 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 
-export function LandingCTA() {
+"use client";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
+const CTA = () => {
+  const words = [
+    {
+      text: "Start",
+    },
+    {
+      text: "Your",
+    },
+    {
+      text: "Coding",
+    },
+    {
+      text: "Journey",
+    },
+    {
+      text: "Today",
+      className: "text-blue-500 dark:text-blue-500",
+    },
+  ];
+
   return (
-    <section className="py-24 bg-primary/5">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              Join thousands of students learning software development through our structured roadmap.
-              Start your journey today and build the skills you need for a successful career.
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Button size="lg" asChild>
-              <Link href="/auth/signup">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+    <section className="px-4 sm:px-6 lg:px-">
+      <div className="max-w-4xl mx-auto text-center">
+        <div className="flex flex-col items-center justify-center min-h-[20rem]">
+          <p className="text-blue-100 text-xs sm:text-base mb-4">
+            The road to your tech career starts from here
+          </p>
+          <TypewriterEffectSmooth words={words} />
+          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-8">
+            <Button 
+              size="lg" 
+              className="w-40 h-10 rounded-xl bg-white text-black hover:bg-gray-100 border-transparent font-semibold"
+            >
+              Start Learning 
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/phases">
-                View Roadmap
-              </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-40 h-10 rounded-xl bg-transparent text-white border-white hover:bg-white hover:text-blue-600"
+            >
+              Join Community
             </Button>
           </div>
+          {/* <p className="text-blue-200 text-sm mt-6">
+            No credit card required • 7-day free trial • Cancel anytime
+          </p> */}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default CTA;

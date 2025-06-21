@@ -103,7 +103,7 @@ export default function DoubtDashboardPage() {
         <ul className="flex flex-col gap-6">
           {filteredDoubts.map((doubt) => (
             <li key={doubt.id} className="border rounded-xl p-5 bg-card hover:shadow transition">
-              <Link href={`/doubt/${doubt.id}`} className="block">
+              <Link href={`/community/doubt/${doubt.id}`} className="block">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-bold">{doubt.username}</span>
                   <span className="text-xs text-muted-foreground">

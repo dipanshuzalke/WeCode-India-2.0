@@ -2,27 +2,27 @@
 
 import React from "react";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
-import { Calendar, Code, FileText, User, Clock } from "lucide-react";
+import { Calendar, Code, FileText, User, Clock, BookOpen, Layers, Code2, FileCode2, GraduationCap } from "lucide-react";
 
 const timelineData = [
   {
     id: 1,
-    title: "Planning",
+    title: "Fundamentals",
     date: "Jan 2024",
-    content: "Project planning and requirements gathering phase.",
+    content: "Build a strong foundation with programming basics, Git, and development setup",
     category: "Planning",
-    icon: Calendar,
+    icon: BookOpen,
     relatedIds: [2],
     status: "completed" as const,
     energy: 100,
   },
   {
     id: 2,
-    title: "Design",
+    title: "DSA",
     date: "Feb 2024",
-    content: "UI/UX design and system architecture.",
+    content: "Master core DSA concepts and problem-solving techniques.",
     category: "Design",
-    icon: FileText,
+    icon: Layers,
     relatedIds: [1, 3],
     status: "completed" as const,
     energy: 90,
@@ -31,31 +31,31 @@ const timelineData = [
     id: 3,
     title: "Development",
     date: "Mar 2024",
-    content: "Core features implementation and testing.",
+    content: "Learn web, mobile, or other development paths with hands-on projects.",
     category: "Development",
-    icon: Code,
+    icon: Code2,
     relatedIds: [2, 4],
     status: "in-progress" as const,
     energy: 60,
   },
   {
     id: 4,
-    title: "Testing",
+    title: "Profile Building",
     date: "Apr 2024",
-    content: "User testing and bug fixes.",
+    content: "Create impressive portfolios, optimize GitHub and LinkedIn profiles.",
     category: "Testing",
-    icon: User,
+    icon: FileCode2,
     relatedIds: [3, 5],
     status: "pending" as const,
     energy: 30,
   },
   {
     id: 5,
-    title: "Release",
+    title: "Interview Prep",
     date: "May 2024",
-    content: "Final deployment and release.",
+    content: "Practice technical interviews, system design, and HR questions.",
     category: "Release",
-    icon: Clock,
+    icon: GraduationCap,
     relatedIds: [4],
     status: "pending" as const,
     energy: 10,
@@ -66,7 +66,7 @@ export default function Roadmap() {
   return (
     <section className="py-10">
       <div className="container px-4 md:px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-4">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
             Your Learning Journey
           </h2>

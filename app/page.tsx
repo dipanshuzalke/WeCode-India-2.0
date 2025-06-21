@@ -1,10 +1,11 @@
 "use client";
 import { LandingHero } from "@/components/landing/landing-hero";
 import { LandingFeatures } from "@/components/landing/landing-features";
-import { LandingCTA } from "@/components/landing/landing-cta";
+import  CTA from "@/components/landing/landing-cta";
 import Roadmap from "@/components/landing/roadmap";
 import Domains from "@/components/landing/domains";
-import Testimonials from "@/components/landing/testimonials";
+import SparklesSection from "@/components/landing/landing-end";
+import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
 
@@ -14,8 +15,8 @@ export default function Home() {
       <LandingFeatures />
       <Roadmap />
       <Domains />
-      <Testimonials />
-      <LandingCTA />
+      <CTA />
+      <SparklesSection />
     </div>
   );
 }
