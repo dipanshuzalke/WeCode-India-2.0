@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Code2, FileText, GitBranch, Clock } from "lucide-react";
+import { FileText } from "lucide-react";
 import { dsaTopics } from "../../../data/dsa-topics";
 import { dsaQuestions } from "../../../data/dsa-questions";
 import StructuredLearningPath from "@/components/dsa/topics/StructuredLearningPath";
@@ -45,8 +45,6 @@ export default function TopicsPage() {
     };
   };
 
-  const handleTopicClick = (name: string) =>
-    router.push(`/dsa/topics/${encodeURIComponent(name)}`);
   const handleTopicDocClick = (id: string) =>
     router.push(`/dsa/topics/${encodeURIComponent(id)}`);
 
@@ -101,22 +99,13 @@ export default function TopicsPage() {
                 </div>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <button
-                  onClick={() => handleTopicDocClick(topic.id)}
-                  className="flex-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center justify-center gap-2 py-2 border border-gray-200 dark:border-zinc-700 rounded hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <FileText size={14} />
-                  Study
-                </button>
-                <button
-                  onClick={() => handleTopicClick(topic.name)}
-                  className="flex-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center justify-center gap-2 py-2 border border-gray-200 dark:border-zinc-700 rounded hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <Code2 size={14} />
-                  Practice
-                </button>
-              </div>
+              <button
+                onClick={() => handleTopicDocClick(topic.id)}
+                className="cursor-pointer flex-1 w-full mt-4 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white flex items-center justify-center gap-2 py-2 border border-gray-200 dark:border-zinc-700 rounded hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <FileText size={14} />
+                Start stuying
+              </button>
             </div>
           );
         })}

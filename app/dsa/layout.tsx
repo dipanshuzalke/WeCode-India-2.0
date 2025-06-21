@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, Code2, TrendingUp } from "lucide-react";
+import DsaHeroSection from "@/components/dsa/DsaHeroSection";
 
 export default function DsaLayout({ children }: { children: React.ReactNode }) {
   const path = usePathname();
@@ -25,48 +26,9 @@ export default function DsaLayout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-zinc-800">
+    <div className="min-h-screen bg-gray-50 dark:bg-black ">
+      <DsaHeroSection />
       <div className="container mx-auto px-6 py-8">
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 bg-gray-900 dark:bg-zinc-200 rounded-lg flex items-center justify-center">
-              <Code2 className="text-white dark:text-black" size={24} />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Data Structures & Algorithms
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
-                Master essential concepts for technical interviews and
-                competitive programming
-              </p>
-            </div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {[
-              { label: "Problems Solved", value: "142" },
-              { label: "Current Streak", value: "23d" },
-              { label: "Topics Completed", value: "6/12" },
-              { label: "Time Invested", value: "142 hrs" },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4"
-              >
-                <div className="text-xl font-bold text-gray-900 dark:text-white">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Tabs */}
         <div className="border-b border-gray-200 dark:border-zinc-700 mb-8">
           <nav className="flex space-x-8">
