@@ -1,3 +1,5 @@
+"use client";
+
 import Agent from "@/components/ai-interviewer/Agent";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";

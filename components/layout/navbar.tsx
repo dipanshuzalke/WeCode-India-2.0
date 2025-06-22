@@ -27,6 +27,9 @@ export function NavBar() {
   const routes = [
     { href: "/", label: "Home" },
     { href: "/phases", label: "Phases" },
+    { href: "/roadmap", label: "AI Roadmap" },
+    { href: "/assistant", label: "AI Assistant" },
+    { href: "/dashboard", label: "Dashboard" },
     { href: "/community", label: "Community" },
     { href: "/dsa", label: "DSA" },
     { href: "/projects", label: "Projects" },
@@ -95,6 +98,20 @@ export function NavBar() {
                     )}
                   >
                     Home
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/dashboard"
+                    className={cn(
+                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
+                      pathname === "/dashboard" ? "bg-accent" : "bg-background"
+                    )}
+                  >
+                    Dashboard
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
