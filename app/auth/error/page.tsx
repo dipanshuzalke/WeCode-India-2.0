@@ -1,3 +1,6 @@
+"use client";
+
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const errorMessages: Record<string, string> = {
@@ -13,7 +16,7 @@ const errorMessages: Record<string, string> = {
   default: "Unable to sign in. Please try again."
 };
 
-export default function AuthErrorPage() {
+function ErrorContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
   const errorMessage = error ? (errorMessages[error] || errorMessages.default) : errorMessages.default;
@@ -24,5 +27,13 @@ export default function AuthErrorPage() {
       <p style={{ color: "red", margin: "1rem 0" }}>{errorMessage}</p>
       <a href="/auth/signin" style={{ color: "blue", textDecoration: "underline" }}>Back to Sign In</a>
     </div>
+  );
+}
+
+export default function AuthErrorPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ErrorContent />
+    </Suspense>
   );
 } 
