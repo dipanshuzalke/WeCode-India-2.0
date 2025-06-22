@@ -31,23 +31,6 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({ user }) {
       if (!user.email) return false;
-      
-      // Check if user exists
-      const existingUser = await prismaClient.user.findUnique({
-        where: { email: user.email },
-      });
-
-      if (!existingUser) {
-        // Create new user if doesn't exist
-        await prismaClient.user.create({
-          data: {
-            email: user.email,
-            name: user.name,
-            image: user.image,
-          },
-        });
-      }
-
       return true;
     },
   },
