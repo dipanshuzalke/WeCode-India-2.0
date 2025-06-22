@@ -28,7 +28,7 @@ const CTA = () => {
     <section className="px-4 sm:px-6 lg:px-">
       <div className="max-w-4xl mx-auto text-center">
         <div className="flex flex-col items-center justify-center min-h-[20rem]">
-          <p className="text-blue-100 text-xs sm:text-base mb-4">
+          <p className="dark:text-blue-100 text-blue-900 text-xs sm:text-base mb-4">
             The road to your tech career starts from here
           </p>
           <TypewriterEffectSmooth words={words} />

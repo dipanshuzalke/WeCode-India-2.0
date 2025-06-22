@@ -130,7 +130,7 @@ export function NavBar() {
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/phases/dsa" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link href="/dsa" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">DSA</div>
                           <p className="text-sm text-muted-foreground line-clamp-2">Master data structures & algorithms</p>
                         </Link>

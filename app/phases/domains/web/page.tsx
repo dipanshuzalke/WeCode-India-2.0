@@ -151,54 +151,54 @@ const WebDevelopmentPage = () => {
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'Beginner': return 'text-green-600 bg-green-100';
-      case 'Intermediate': return 'text-yellow-600 bg-yellow-100';
-      case 'Advanced': return 'text-orange-600 bg-orange-100';
-      case 'Expert': return 'text-red-600 bg-red-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case 'Beginner': return 'text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30';
+      case 'Intermediate': return 'text-yellow-700 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30';
+      case 'Advanced': return 'text-orange-700 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30';
+      case 'Expert': return 'text-red-700 bg-red-100 dark:text-red-400 dark:bg-red-900/30';
+      default: return 'text-gray-700 bg-gray-100 dark:text-gray-300 dark:bg-gray-800';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-black dark:to-blue-900">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
+      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-600 dark:to-cyan-600 text-white">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="flex items-center space-x-4 mb-6">
-            <div className="bg-white/20 p-3 rounded-xl">
+            <div className="bg-white/20 dark:bg-white/10 p-3 rounded-xl">
               <Globe className="w-8 h-8" />
             </div>
             <div>
               <h1 className="text-4xl font-bold">Web Development</h1>
-              <p className="text-blue-100 text-lg">Frontend and backend technologies, frameworks, and deployment</p>
+              <p className="text-blue-100 dark:text-blue-200 text-lg">Frontend and backend technologies, frameworks, and deployment</p>
             </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <Code className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">42</p>
-                  <p className="text-blue-100">Projects</p>
+                  <p className="text-blue-100 dark:text-blue-200">Projects</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <BookOpen className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">87</p>
-                  <p className="text-blue-100">Resources</p>
+                  <p className="text-blue-100 dark:text-blue-200">Resources</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <Users className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">12.4K</p>
-                  <p className="text-blue-100">Students</p>
+                  <p className="text-blue-100 dark:text-blue-200">Students</p>
                 </div>
               </div>
             </div>
@@ -208,7 +208,7 @@ const WebDevelopmentPage = () => {
 
       {/* Navigation Tabs */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl mb-8">
+        <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl mb-8">
           {[
             { id: 'projects', label: 'Projects', icon: Code },
             { id: 'resources', label: 'Resources', icon: BookOpen },
@@ -219,8 +219,8 @@ const WebDevelopmentPage = () => {
               onClick={() => setActiveTab(id)}
               className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-all ${
                 activeTab === id
-                  ? 'bg-white text-blue-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-800'
+                  ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100'
               }`}
             >
               <Icon className="w-5 h-5" />
@@ -233,12 +233,12 @@ const WebDevelopmentPage = () => {
         {activeTab === 'projects' && (
           <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Featured Projects</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Featured Projects</h2>
               <div className="flex space-x-2">
                 {['All', 'Frontend', 'Backend', 'Full-stack'].map((filter) => (
                   <button
                     key={filter}
-                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300"
                   >
                     {filter}
                   </button>
@@ -248,12 +248,12 @@ const WebDevelopmentPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project) => (
-                <div key={project.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <div key={project.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-gray-900/20 transition-shadow border border-gray-100 dark:border-gray-700">
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{project.title}</h3>
-                        <p className="text-gray-600 text-sm mb-3">{project.description}</p>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{project.description}</p>
                       </div>
                     </div>
                     
@@ -261,7 +261,7 @@ const WebDevelopmentPage = () => {
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
                         {project.difficulty}
                       </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
+                      <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
                         <Clock className="w-4 h-4" />
                         <span className="text-sm">{project.duration}</span>
                       </div>
@@ -270,28 +270,28 @@ const WebDevelopmentPage = () => {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">{project.rating}</span>
-                        <span className="text-gray-500 text-sm">({project.students})</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">{project.rating}</span>
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">({project.students})</span>
                       </div>
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
                         {project.category}
                       </span>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech) => (
-                        <span key={tech} className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded">
+                        <span key={tech} className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs rounded">
                           {tech}
                         </span>
                       ))}
                     </div>
 
                     <div className="flex space-x-2">
-                      <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                      <button className="flex-1 bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2">
                         <Play className="w-4 h-4" />
                         <span>Start Project</span>
                       </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300">
                         <Download className="w-4 h-4" />
                       </button>
                     </div>
@@ -306,12 +306,12 @@ const WebDevelopmentPage = () => {
         {activeTab === 'resources' && (
           <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Learning Resources</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Learning Resources</h2>
               <div className="flex space-x-2">
                 {['All', 'Course', 'Tutorial', 'Documentation', 'Workshop'].map((filter) => (
                   <button
                     key={filter}
-                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300"
                   >
                     {filter}
                   </button>
@@ -321,17 +321,17 @@ const WebDevelopmentPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resources.map((resource) => (
-                <div key={resource.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <div key={resource.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-gray-900/20 transition-shadow border border-gray-100 dark:border-gray-700">
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">{resource.title}</h3>
-                          <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{resource.title}</h3>
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">
                             {resource.type}
                           </span>
                         </div>
-                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
                           {resource.category}
                         </span>
                       </div>
@@ -341,7 +341,7 @@ const WebDevelopmentPage = () => {
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(resource.level)}`}>
                         {resource.level}
                       </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
+                      <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
                         <Clock className="w-4 h-4" />
                         <span className="text-sm">{resource.duration}</span>
                       </div>
@@ -350,17 +350,17 @@ const WebDevelopmentPage = () => {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">{resource.rating}</span>
-                        <span className="text-gray-500 text-sm">({resource.students})</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">{resource.rating}</span>
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">({resource.students})</span>
                       </div>
                     </div>
 
                     <div className="flex space-x-2">
-                      <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                      <button className="flex-1 bg-green-600 dark:bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-colors flex items-center justify-center space-x-2">
                         <BookOpen className="w-4 h-4" />
                         <span>Access Resource</span>
                       </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300">
                         <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>
@@ -374,16 +374,16 @@ const WebDevelopmentPage = () => {
         {/* Technologies Tab */}
         {activeTab === 'technologies' && (
           <div className="space-y-8">
-            <h2 className="text-2xl font-bold text-gray-900">Technology Stack</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Technology Stack</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {technologies.map((tech) => (
-                <div key={tech.name} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div key={tech.name} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">{tech.name}</h3>
-                    <span className="text-sm font-medium text-gray-600">{tech.level}%</span>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tech.name}</h3>
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">{tech.level}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                     <div 
                       className={`h-3 rounded-full bg-gradient-to-r ${tech.color} transition-all duration-700`}
                       style={{ width: `${tech.level}%` }}
@@ -393,10 +393,10 @@ const WebDevelopmentPage = () => {
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-600 dark:to-cyan-600 rounded-xl p-8 text-white">
               <h3 className="text-xl font-bold mb-4">Ready to Start Your Web Development Journey?</h3>
-              <p className="text-blue-100 mb-6">Join thousands of developers learning modern web technologies</p>
-              <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              <p className="text-blue-100 dark:text-blue-200 mb-6">Join thousands of developers learning modern web technologies</p>
+              <button className="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
                 Get Started Today
               </button>
             </div>

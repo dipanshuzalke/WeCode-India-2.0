@@ -65,7 +65,7 @@ const timelineData = [
 export default function Roadmap() {
   return (
     <section className="py-10">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 md:px-6 mx-auto">
         <div className="text-center mb-4">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
             Your Learning Journey

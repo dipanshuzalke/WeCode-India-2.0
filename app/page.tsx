@@ -5,7 +5,6 @@ import  CTA from "@/components/landing/landing-cta";
 import Roadmap from "@/components/landing/roadmap";
 import Domains from "@/components/landing/domains";
 import SparklesSection from "@/components/landing/landing-end";
-import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
 

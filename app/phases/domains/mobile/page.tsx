@@ -1,13 +1,9 @@
-"use client";
+'use client';
 import React, { useState } from "react";
 import {
   Smartphone,
   Code,
   Layers,
-  Zap,
-  Monitor,
-  Palette,
-  ChevronRight,
   Star,
   Users,
   Clock,
@@ -205,15 +201,15 @@ const MobileDevelopmentPage = () => {
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case "Beginner":
-        return "text-green-600 bg-green-100";
+        return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";
       case "Intermediate":
-        return "text-yellow-600 bg-yellow-100";
+        return "text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30";
       case "Advanced":
-        return "text-orange-600 bg-orange-100";
+        return "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30";
       case "Expert":
-        return "text-red-600 bg-red-100";
+        return "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30";
       default:
-        return "text-gray-600 bg-gray-100";
+        return "text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800";
     }
   };
 
@@ -233,47 +229,47 @@ const MobileDevelopmentPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+      <div className="bg-gradient-to-r from-green-500 to-emerald-500 dark:from-green-600 dark:to-emerald-600 text-white">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="flex items-center space-x-4 mb-6">
-            <div className="bg-white/20 p-3 rounded-xl">
+            <div className="bg-white/20 dark:bg-white/10 p-3 rounded-xl">
               <Smartphone className="w-8 h-8" />
             </div>
             <div>
               <h1 className="text-4xl font-bold">Mobile Development</h1>
-              <p className="text-green-100 text-lg">
+              <p className="text-green-100 dark:text-green-200 text-lg">
                 Native and cross-platform app development for iOS and Android
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <Code className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">36</p>
-                  <p className="text-green-100">Projects</p>
+                  <p className="text-green-100 dark:text-green-200">Projects</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <BookOpen className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">65</p>
-                  <p className="text-green-100">Resources</p>
+                  <p className="text-green-100 dark:text-green-200">Resources</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="flex items-center space-x-3">
                 <Users className="w-6 h-6" />
                 <div>
                   <p className="text-2xl font-bold">9.8K</p>
-                  <p className="text-green-100">Students</p>
+                  <p className="text-green-100 dark:text-green-200">Students</p>
                 </div>
               </div>
             </div>
@@ -283,7 +279,7 @@ const MobileDevelopmentPage = () => {
 
       {/* Navigation Tabs */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl mb-8">
+        <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl mb-8">
           {[
             { id: "projects", label: "Projects", icon: Code },
             { id: "resources", label: "Resources", icon: BookOpen },
@@ -294,8 +290,8 @@ const MobileDevelopmentPage = () => {
               onClick={() => setActiveTab(id)}
               className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-all ${
                 activeTab === id
-                  ? "bg-white text-green-600 shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
+                  ? "bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 shadow-sm"
+                  : "text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
               }`}
             >
               <Icon className="w-5 h-5" />
@@ -308,7 +304,7 @@ const MobileDevelopmentPage = () => {
         {activeTab === "projects" && (
           <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Featured Projects
               </h2>
               <div className="flex space-x-2">
@@ -316,7 +312,7 @@ const MobileDevelopmentPage = () => {
                   (filter) => (
                     <button
                       key={filter}
-                      className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300"
                     >
                       {filter}
                     </button>
@@ -329,18 +325,20 @@ const MobileDevelopmentPage = () => {
               {projects.map((project) => (
                 <div
                   key={project.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {project.title}
                           </h3>
-                          {getPlatformIcon(project.platform)}
+                          <div className="text-gray-600 dark:text-gray-400">
+                            {getPlatformIcon(project.platform)}
+                          </div>
                         </div>
-                        <p className="text-gray-600 text-sm mb-3">
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                           {project.description}
                         </p>
                       </div>
@@ -354,7 +352,7 @@ const MobileDevelopmentPage = () => {
                       >
                         {project.difficulty}
                       </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
+                      <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
                         <Clock className="w-4 h-4" />
                         <span className="text-sm">{project.duration}</span>
                       </div>
@@ -363,14 +361,14 @@ const MobileDevelopmentPage = () => {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
                           {project.rating}
                         </span>
-                        <span className="text-gray-500 text-sm">
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">
                           ({project.students})
                         </span>
                       </div>
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
                         {project.category}
                       </span>
                     </div>
@@ -379,7 +377,7 @@ const MobileDevelopmentPage = () => {
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded"
+                          className="px-2 py-1 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded"
                         >
                           {tech}
                         </span>
@@ -387,11 +385,11 @@ const MobileDevelopmentPage = () => {
                     </div>
 
                     <div className="flex space-x-2">
-                      <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                      <button className="flex-1 bg-green-600 dark:bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-colors flex items-center justify-center space-x-2">
                         <Play className="w-4 h-4" />
                         <span>Start Project</span>
                       </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-400">
                         <Download className="w-4 h-4" />
                       </button>
                     </div>
@@ -406,7 +404,7 @@ const MobileDevelopmentPage = () => {
         {activeTab === "resources" && (
           <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Learning Resources
               </h2>
               <div className="flex space-x-2">
@@ -414,7 +412,7 @@ const MobileDevelopmentPage = () => {
                   (filter) => (
                     <button
                       key={filter}
-                      className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300"
                     >
                       {filter}
                     </button>
@@ -427,20 +425,20 @@ const MobileDevelopmentPage = () => {
               {resources.map((resource) => (
                 <div
                   key={resource.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
                 >
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {resource.title}
                           </h3>
-                          <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">
+                          <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">
                             {resource.type}
                           </span>
                         </div>
-                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
                           {resource.category}
                         </span>
                       </div>
@@ -454,7 +452,7 @@ const MobileDevelopmentPage = () => {
                       >
                         {resource.level}
                       </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
+                      <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
                         <Clock className="w-4 h-4" />
                         <span className="text-sm">{resource.duration}</span>
                       </div>
@@ -463,21 +461,21 @@ const MobileDevelopmentPage = () => {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
                           {resource.rating}
                         </span>
-                        <span className="text-gray-500 text-sm">
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">
                           ({resource.students})
                         </span>
                       </div>
                     </div>
 
                     <div className="flex space-x-2">
-                      <button className="flex-1 bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-2">
+                      <button className="flex-1 bg-emerald-600 dark:bg-emerald-500 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-colors flex items-center justify-center space-x-2">
                         <BookOpen className="w-4 h-4" />
                         <span>Access Resource</span>
                       </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-400">
                         <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>
@@ -491,7 +489,7 @@ const MobileDevelopmentPage = () => {
         {/* Technologies Tab */}
         {activeTab === "technologies" && (
           <div className="space-y-8">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               Mobile Technology Stack
             </h2>
 
@@ -499,20 +497,20 @@ const MobileDevelopmentPage = () => {
               {technologies.map((tech) => (
                 <div
                   key={tech.name}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">{tech.icon}</span>
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                         {tech.name}
                       </h3>
                     </div>
-                    <span className="text-sm font-medium text-gray-600">
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
                       {tech.level}%
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                     <div
                       className={`h-3 rounded-full bg-gradient-to-r ${tech.color} transition-all duration-700`}
                       style={{ width: `${tech.level}%` }}
@@ -522,14 +520,14 @@ const MobileDevelopmentPage = () => {
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-500 dark:from-green-600 dark:to-emerald-600 rounded-xl p-8 text-white">
               <h3 className="text-xl font-bold mb-4">
                 Ready to Build Amazing Mobile Apps?
               </h3>
-              <p className="text-green-100 mb-6">
+              <p className="text-green-100 dark:text-green-200 mb-6">
                 Master native and cross-platform mobile development
               </p>
-              <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors">
+              <button className="bg-white text-green-600 dark:bg-gray-100 dark:text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 dark:hover:bg-gray-200 transition-colors">
                 Start Learning Now
               </button>
             </div>

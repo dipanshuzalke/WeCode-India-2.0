@@ -18,10 +18,13 @@ import {
   Cpu,
   BarChart3,
   Network,
+  Moon,
+  Sun,
 } from "lucide-react";
 
 const AIMLPage = () => {
   const [activeTab, setActiveTab] = useState("projects");
+  const [darkMode, setDarkMode] = useState(false);
 
   const projects = [
     {
@@ -202,327 +205,330 @@ const AIMLPage = () => {
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case "Beginner":
-        return "text-green-600 bg-green-100";
+        return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";
       case "Intermediate":
-        return "text-yellow-600 bg-yellow-100";
+        return "text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30";
       case "Advanced":
-        return "text-orange-600 bg-orange-100";
+        return "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30";
       case "Expert":
-        return "text-red-600 bg-red-100";
+        return "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30";
       default:
-        return "text-gray-600 bg-gray-100";
+        return "text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-violet-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-violet-500 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="flex items-center space-x-4 mb-6">
-            <div className="bg-white/20 p-3 rounded-xl">
-              <Brain className="w-8 h-8" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold">AI & Machine Learning</h1>
-              <p className="text-purple-100 text-lg">
-                Machine learning, deep learning, and AI application development
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="flex items-center space-x-3">
-                <Code className="w-6 h-6" />
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-violet-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 text-white">
+          <div className="max-w-7xl mx-auto px-6 py-16">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="bg-white/20 dark:bg-white/30 p-3 rounded-xl">
+                  <Brain className="w-8 h-8" />
+                </div>
                 <div>
-                  <p className="text-2xl font-bold">28</p>
-                  <p className="text-purple-100">Projects</p>
+                  <h1 className="text-4xl font-bold">AI & Machine Learning</h1>
+                  <p className="text-purple-100 dark:text-purple-200 text-lg">
+                    Machine learning, deep learning, and AI application development
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="flex items-center space-x-3">
-                <BookOpen className="w-6 h-6" />
-                <div>
-                  <p className="text-2xl font-bold">73</p>
-                  <p className="text-purple-100">Resources</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="flex items-center space-x-3">
-                <Users className="w-6 h-6" />
-                <div>
-                  <p className="text-2xl font-bold">15.2K</p>
-                  <p className="text-purple-100">Students</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Navigation Tabs */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl mb-8">
-          {[
-            { id: "projects", label: "Projects", icon: Code },
-            { id: "resources", label: "Resources", icon: BookOpen },
-            { id: "technologies", label: "Technologies", icon: Layers },
-          ].map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id)}
-              className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-all ${
-                activeTab === id
-                  ? "bg-white text-purple-600 shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-            >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium">{label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Tab */}
-        {activeTab === "projects" && (
-          <div className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Featured AI Projects
-              </h2>
-              <div className="flex space-x-2">
-                {[
-                  "All",
-                  "Computer Vision",
-                  "NLP",
-                  "Deep Learning",
-                  "MLOps",
-                ].map((filter) => (
-                  <button
-                    key={filter}
-                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project) => (
-                <div
-                  key={project.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
-                >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-3">
-                          {project.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4 mb-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
-                          project.difficulty
-                        )}`}
-                      >
-                        {project.difficulty}
-                      </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm">{project.duration}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">
-                          {project.rating}
-                        </span>
-                        <span className="text-gray-500 text-sm">
-                          ({project.students})
-                        </span>
-                      </div>
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                        {project.category}
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex space-x-2">
-                      <button className="flex-1 bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center space-x-2">
-                        <Play className="w-4 h-4" />
-                        <span>Start Project</span>
-                      </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                        <Download className="w-4 h-4" />
-                      </button>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div className="bg-white/10 dark:bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <div className="flex items-center space-x-3">
+                  <Code className="w-6 h-6" />
+                  <div>
+                    <p className="text-2xl font-bold">28</p>
+                    <p className="text-purple-100 dark:text-purple-200">Projects</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Resources Tab */}
-        {activeTab === "resources" && (
-          <div className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Learning Resources
-              </h2>
-              <div className="flex space-x-2">
-                {[
-                  "All",
-                  "ML Basics",
-                  "Deep Learning",
-                  "Computer Vision",
-                  "NLP",
-                ].map((filter) => (
-                  <button
-                    key={filter}
-                    className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    {filter}
-                  </button>
-                ))}
+              </div>
+              <div className="bg-white/10 dark:bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <div className="flex items-center space-x-3">
+                  <BookOpen className="w-6 h-6" />
+                  <div>
+                    <p className="text-2xl font-bold">73</p>
+                    <p className="text-purple-100 dark:text-purple-200">Resources</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/10 dark:bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <div className="flex items-center space-x-3">
+                  <Users className="w-6 h-6" />
+                  <div>
+                    <p className="text-2xl font-bold">15.2K</p>
+                    <p className="text-purple-100 dark:text-purple-200">Students</p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {resources.map((resource) => (
-                <div
-                  key={resource.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
-                >
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
-                            {resource.title}
+        {/* Navigation Tabs */}
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-xl mb-8">
+            {[
+              { id: "projects", label: "Projects", icon: Code },
+              { id: "resources", label: "Resources", icon: BookOpen },
+              { id: "technologies", label: "Technologies", icon: Layers },
+            ].map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg transition-all ${
+                  activeTab === id
+                    ? "bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-400 shadow-sm"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                <span className="font-medium">{label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Projects Tab */}
+          {activeTab === "projects" && (
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  Featured AI Projects
+                </h2>
+                <div className="flex space-x-2">
+                  {[
+                    "All",
+                    "Computer Vision",
+                    "NLP",
+                    "Deep Learning",
+                    "MLOps",
+                  ].map((filter) => (
+                    <button
+                      key={filter}
+                      className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 transition-colors"
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
+                  >
+                    <div className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                            {project.title}
                           </h3>
-                          <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">
-                            {resource.type}
+                          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-4 mb-4">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
+                            project.difficulty
+                          )}`}
+                        >
+                          {project.difficulty}
+                        </span>
+                        <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
+                          <Clock className="w-4 h-4" />
+                          <span className="text-sm">{project.duration}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-1">
+                          <Star className="w-4 h-4 text-yellow-400" />
+                          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                            {project.rating}
+                          </span>
+                          <span className="text-gray-500 dark:text-gray-400 text-sm">
+                            ({project.students})
                           </span>
                         </div>
-                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                          {resource.category}
+                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                          {project.category}
                         </span>
                       </div>
-                    </div>
 
-                    <div className="flex items-center space-x-4 mb-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
-                          resource.level
-                        )}`}
-                      >
-                        {resource.level}
-                      </span>
-                      <div className="flex items-center space-x-1 text-gray-500">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm">{resource.duration}</span>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex space-x-2">
+                        <button className="flex-1 bg-purple-600 dark:bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors flex items-center justify-center space-x-2">
+                          <Play className="w-4 h-4" />
+                          <span>Start Project</span>
+                        </button>
+                        <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-colors">
+                          <Download className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
+          {/* Resources Tab */}
+          {activeTab === "resources" && (
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  Learning Resources
+                </h2>
+                <div className="flex space-x-2">
+                  {[
+                    "All",
+                    "ML Basics",
+                    "Deep Learning",
+                    "Computer Vision",
+                    "NLP",
+                  ].map((filter) => (
+                    <button
+                      key={filter}
+                      className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 transition-colors"
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {resources.map((resource) => (
+                  <div
+                    key={resource.id}
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
+                  >
+                    <div className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                              {resource.title}
+                            </h3>
+                            <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-xs rounded">
+                              {resource.type}
+                            </span>
+                          </div>
+                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                            {resource.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-4 mb-4">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
+                            resource.level
+                          )}`}
+                        >
+                          {resource.level}
+                        </span>
+                        <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
+                          <Clock className="w-4 h-4" />
+                          <span className="text-sm">{resource.duration}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-1">
+                          <Star className="w-4 h-4 text-yellow-400" />
+                          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                            {resource.rating}
+                          </span>
+                          <span className="text-gray-500 dark:text-gray-400 text-sm">
+                            ({resource.students})
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex space-x-2">
+                        <button className="flex-1 bg-violet-600 dark:bg-violet-500 text-white py-2 px-4 rounded-lg hover:bg-violet-700 dark:hover:bg-violet-600 transition-colors flex items-center justify-center space-x-2">
+                          <BookOpen className="w-4 h-4" />
+                          <span>Access Resource</span>
+                        </button>
+                        <button className="p-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-colors">
+                          <ExternalLink className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Technologies Tab */}
+          {activeTab === "technologies" && (
+            <div className="space-y-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                AI/ML Technology Stack
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {technologies.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700"
+                  >
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-medium">
-                          {resource.rating}
-                        </span>
-                        <span className="text-gray-500 text-sm">
-                          ({resource.students})
-                        </span>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-2xl">{tech.icon}</span>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                          {tech.name}
+                        </h3>
                       </div>
+                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        {tech.level}%
+                      </span>
                     </div>
-
-                    <div className="flex space-x-2">
-                      <button className="flex-1 bg-violet-600 text-white py-2 px-4 rounded-lg hover:bg-violet-700 transition-colors flex items-center justify-center space-x-2">
-                        <BookOpen className="w-4 h-4" />
-                        <span>Access Resource</span>
-                      </button>
-                      <button className="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                      <div
+                        className={`h-3 rounded-full bg-gradient-to-r ${tech.color} transition-all duration-700`}
+                        style={{ width: `${tech.level}%` }}
+                      ></div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+                ))}
+              </div>
 
-        {/* Technologies Tab */}
-        {activeTab === "technologies" && (
-          <div className="space-y-8">
-            <h2 className="text-2xl font-bold text-gray-900">
-              AI/ML Technology Stack
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {technologies.map((tech) => (
-                <div
-                  key={tech.name}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl">{tech.icon}</span>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {tech.name}
-                      </h3>
-                    </div>
-                    <span className="text-sm font-medium text-gray-600">
-                      {tech.level}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div
-                      className={`h-3 rounded-full bg-gradient-to-r ${tech.color} transition-all duration-700`}
-                      style={{ width: `${tech.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+              <div className="bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 rounded-xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">
+                  Ready to Master Artificial Intelligence?
+                </h3>
+                <p className="text-purple-100 dark:text-purple-200 mb-6">
+                  Join the AI revolution with cutting-edge machine learning projects
+                </p>
+                <button className="bg-white text-purple-600 dark:bg-gray-100 dark:text-purple-700 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 dark:hover:bg-gray-200 transition-colors">
+                  Begin AI Journey
+                </button>
+              </div>
             </div>
-
-            <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl p-8 text-white">
-              <h3 className="text-xl font-bold mb-4">
-                Ready to Master Artificial Intelligence?
-              </h3>
-              <p className="text-purple-100 mb-6">
-                Join the AI revolution with cutting-edge machine learning
-                projects
-              </p>
-              <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
-                Begin AI Journey
-              </button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
