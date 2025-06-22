@@ -1,7 +1,5 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { 
   Brain, 
   TrendingUp, 
@@ -45,7 +43,7 @@ export default function AIFeedback({ feedback }: AIFeedbackProps) {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-green-800 text-lg">
               <CheckCircle2 className="w-5 h-5" />
-              What You're Doing Well
+              What You&apos;re Doing Well
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -104,7 +102,7 @@ export default function AIFeedback({ feedback }: AIFeedbackProps) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-yellow-700 italic">"{feedback.motivationalTip}"</p>
+            <p className="text-yellow-700 italic">&quot;{feedback.motivationalTip}&quot;</p>
           </CardContent>
         </Card>
       )}

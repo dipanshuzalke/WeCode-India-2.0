@@ -203,7 +203,7 @@ export function generateRoadmapPlan(roadmapInput: RoadmapInput) {
   const goalSlug = goal.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return {
     capstones: generateCapstoneProjects(goal, skillLevel),
-    mockSection: generateMockInterviewSection(goal, targetCompaniesOrRoles),
+    mockSection: generateMockInterviewSection(goal, targetCompaniesOrRoles || undefined),
     revisionSection: generateRevisionSection(),
     goalSlug,
   };

@@ -23,14 +23,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid content" }, { status: 400 });
   }
 
-  const userIdentifier = { email: session.user.email };
-
-  if (!userIdentifier.email) {
+  const email = session.user.email;
+  if (!email) {
     return NextResponse.json(
       { error: "Unable to identify user" },
       { status: 400 }
     );
   }
+  const userIdentifier = { email };
 
   try {
     const message = await prismaClient.message.create({

@@ -1,15 +1,13 @@
-
 import React, { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type CodeBlockProps = {
   code: string;
-  language?: string; // default: "bash"
   className?: string;
 };
 
-export function CodeBlock({ code, language = "bash", className }: CodeBlockProps) {
+export function CodeBlock({ code, className }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

@@ -35,7 +35,7 @@ export default function Chat({ mail }: { mail: string }) {
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "Message" },
-        (payload) => {
+        (payload: { new: Message }) => {
           const newMsg = payload.new as Message;
           setMessages((prev) => [...prev, newMsg]);
         }

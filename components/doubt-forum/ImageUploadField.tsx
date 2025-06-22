@@ -1,7 +1,7 @@
-
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { Image, Upload } from "lucide-react";
+import { Image as ImageIcon, Upload } from "lucide-react";
+import NextImage from "next/image";
 
 type ImageUploadFieldProps = {
   value: File | null;
@@ -24,7 +24,7 @@ export function ImageUploadField({
   return (
     <div className="flex flex-col gap-2">
       <label className="flex items-center gap-2">
-        <Image size={18} className="text-primary" />
+        <ImageIcon size={18} className="text-primary" />
         Upload image (optional)
       </label>
       <div className="flex items-center gap-3">
@@ -56,10 +56,13 @@ export function ImageUploadField({
         </span>
       </div>
       {preview && (
-        <img
+        <NextImage
           src={preview}
-          alt="Preview"
+          alt="Image preview"
           className="mt-2 rounded-lg border object-cover max-h-56 w-auto"
+          width={320}
+          height={224}
+          style={{ objectFit: 'cover', maxHeight: '14rem' }}
         />
       )}
     </div>

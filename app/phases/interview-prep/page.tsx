@@ -1,33 +1,54 @@
-
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { Cta4 } from "@/components/ui/cta-4";
-
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import InterviewCard from "@/components/ai-interviewer/InterviewCard";
 import { Play, Sparkles, Brain, TrendingUp, Clock, Calendar } from "lucide-react";
 
-async function fetchUserInterviews(userId: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/interview?userId=${userId}`);
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.interviews || [];
+interface Feedback {
+  id: string;
+  interviewId: string;
+  totalScore: number;
+  categoryScores: Array<{
+    name: string;
+    score: number;
+    comment: string;
+  }>;
+  strengths: string[];
+  areasForImprovement: string[];
+  finalAssessment: string;
+  createdAt: string;
 }
 
-async function Home() {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user?.id;
+interface Interview {
+  id: string;
+  role: string;
+  level: string;
+  questions: string[];
+  techstack: string[];
+  createdAt: string;
+  userId: string;
+  type: string;
+  finalized: boolean;
+  feedbacks?: Feedback[];
+}
 
-  let userInterviews: any[] = [];
-  if (userId) {
-    userInterviews = await fetchUserInterviews(userId);
-  }
+function Home() {
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+  const [userInterviews, setUserInterviews] = useState<Interview[]>([]);
+
+  useEffect(() => {
+    if (!userId) return;
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/interview?userId=${userId}`)
+      .then(res => res.ok ? res.json() : { interviews: [] })
+      .then(data => setUserInterviews(data.interviews || []));
+  }, [userId]);
 
   const hasPastInterviews = userInterviews.length > 0;
 

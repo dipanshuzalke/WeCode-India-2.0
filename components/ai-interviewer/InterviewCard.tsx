@@ -3,24 +3,23 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
 
 import { cn, getRandomInterviewCover } from "@/lib/utils";
+import type { InterviewCardProps } from "@/types";
+import type { Feedback } from "@/types";
 
 const InterviewCard = ({
   interviewId,
-  userId,
   role,
   type,
   techstack,
   createdAt,
   feedbacks = [],
-}: InterviewCardProps & { feedbacks?: any[] }) => {
+}: InterviewCardProps & { feedbacks?: Feedback[] }) => {
   const hasFeedback = Array.isArray(feedbacks) && feedbacks.length > 0;
-  const feedbackId = hasFeedback ? feedbacks[0].id : null;
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
 

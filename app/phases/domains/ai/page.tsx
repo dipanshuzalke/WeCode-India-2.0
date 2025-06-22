@@ -4,10 +4,6 @@ import {
   Brain,
   Code,
   Layers,
-  Zap,
-  TrendingUp,
-  Eye,
-  ChevronRight,
   Star,
   Users,
   Clock,
@@ -15,16 +11,11 @@ import {
   Play,
   Download,
   ExternalLink,
-  Cpu,
-  BarChart3,
-  Network,
-  Moon,
-  Sun,
 } from "lucide-react";
 
 const AIMLPage = () => {
   const [activeTab, setActiveTab] = useState("projects");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(false);
 
   const projects = [
     {
@@ -202,7 +193,7 @@ const AIMLPage = () => {
     },
   ];
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner":
         return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { BarChart3, CheckCircle, Circle, Clock } from "lucide-react";
+import { BarChart3, CheckCircle, Circle } from "lucide-react";
 
 // no hooks needed here, so we can render immediately
 export default function ProgressPage() {

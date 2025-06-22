@@ -1,4 +1,4 @@
-interface Feedback {
+export interface Feedback {
   id: string;
   interviewId: string;
   totalScore: number;
@@ -38,7 +38,7 @@ interface User {
   id: string;
 }
 
-interface InterviewCardProps {
+export interface InterviewCardProps {
   interviewId?: string;
   userId?: string;
   role: string;
@@ -47,7 +47,7 @@ interface InterviewCardProps {
   createdAt?: string;
 }
 
-interface AgentProps {
+export interface AgentProps {
   userName: string;
   userId?: string;
   interviewId?: string;
@@ -97,3 +97,35 @@ interface InterviewFormProps {
 interface TechIconProps {
   techStack: string[];
 }
+
+export interface LanguageOption {
+  name: string;
+  description: string;
+  pros: string[];
+  icon: string;
+  popularity: string;
+}
+
+export interface Resource {
+  id: number;
+  icon: any;
+  title: string;
+  description: string;
+  topics: string[];
+  duration: string;
+  difficulty: string;
+  status: 'completed' | 'in-progress' | 'not-started';
+  resources: {
+    name: string;
+    type: string;
+    url: string;
+  }[];
+}
+
+export interface Milestone {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+export {};

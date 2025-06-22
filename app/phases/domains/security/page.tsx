@@ -4,10 +4,8 @@ import {
   Shield,
   Lock,
   Eye,
-  Zap,
   AlertTriangle,
   Key,
-  ChevronRight,
   Star,
   Users,
   Clock,
@@ -18,12 +16,8 @@ import {
   Bug,
   Network,
   FileSearch,
-  Settings,
   Activity,
   Skull,
-  Search,
-  Wifi,
-  Code,
 } from "lucide-react";
 
 const CybersecurityPage = () => {
@@ -236,37 +230,37 @@ const CybersecurityPage = () => {
     },
   ];
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner":
-        return "text-green-700 bg-green-100 dark:text-green-300 dark:bg-green-900/30";
+        return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";
       case "Intermediate":
-        return "text-yellow-700 bg-yellow-100 dark:text-yellow-300 dark:bg-yellow-900/30";
+        return "text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30";
       case "Advanced":
-        return "text-orange-700 bg-orange-100 dark:text-orange-300 dark:bg-orange-900/30";
+        return "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30";
       case "Expert":
-        return "text-red-700 bg-red-100 dark:text-red-300 dark:bg-red-900/30";
+        return "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30";
       default:
-        return "text-gray-700 bg-gray-100 dark:text-gray-300 dark:bg-gray-800";
+        return "text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800";
     }
   };
 
-  const getTypeIcon = (type) => {
+  const getTypeIcon = (type: string) => {
     switch (type) {
       case "Offensive":
-        return <Skull className="w-4 h-4" />;
+        return <Bug className="w-4 h-4 text-red-500" />;
       case "Defensive":
-        return <Shield className="w-4 h-4" />;
+        return <Shield className="w-4 h-4 text-green-500" />;
       case "Assessment":
-        return <Search className="w-4 h-4" />;
+        return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
       case "Forensics":
-        return <FileSearch className="w-4 h-4" />;
+        return <FileSearch className="w-4 h-4 text-blue-500" />;
       case "Reverse Engineering":
-        return <Bug className="w-4 h-4" />;
+        return <Skull className="w-4 h-4 text-gray-700" />;
       case "Architecture":
-        return <Network className="w-4 h-4" />;
+        return <Network className="w-4 h-4 text-purple-500" />;
       default:
-        return <Lock className="w-4 h-4" />;
+        return <Activity className="w-4 h-4 text-gray-400" />;
     }
   };
 

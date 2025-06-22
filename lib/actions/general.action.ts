@@ -1,8 +1,8 @@
 "use server";
 
-import { generateObject } from "ai";
-import { google } from "@ai-sdk/google";
-import { feedbackSchema } from "@/constants";
+// import { generateObject } from "ai";
+// import { google } from "@ai-sdk/google";
+// import { feedbackSchema } from "@/constants";
 import { prismaClient } from '../prisma';
 
 // --- PRISMA-BASED AI INTERVIEW & FEEDBACK FUNCTIONS ---
@@ -49,7 +49,7 @@ export async function createInterviewFeedbackPrisma({
 }: {
   interviewId: string;
   totalScore: number;
-  categoryScores: any; // Should match your TS type, but JSON is accepted
+  categoryScores: Record<string, number>; // Should match your TS type, but JSON is accepted
   strengths: string[];
   areasForImprovement: string[];
   finalAssessment: string;

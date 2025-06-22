@@ -5,7 +5,7 @@ import Agent from "@/components/ai-interviewer/Agent";
 import { getRandomInterviewCover } from "@/lib/utils";
 import DisplayTechIcons from "@/components/ai-interviewer/DisplayTechIcons";
 
-const InterviewDetails = async ({ params }: RouteParams) => {
+const InterviewDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   // Fetch interview and feedback data from API
@@ -96,7 +96,7 @@ const InterviewDetails = async ({ params }: RouteParams) => {
           {/* Interview Breakdown */}
           <div className="flex flex-col gap-4">
             <h3>Breakdown of the Interview:</h3>
-            {feedback?.categoryScores?.map((category: any, index: number) => (
+            {feedback?.categoryScores?.map((category: { name: string; score: number; comment: string }, index: number) => (
               <div key={index}>
                 <p className="font-bold">
                   {index + 1}. {category.name} ({category.score}/100)

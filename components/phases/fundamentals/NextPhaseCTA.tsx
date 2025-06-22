@@ -9,7 +9,7 @@ const NextPhaseCTA: React.FC = () => {
           Ready for the Next Challenge?
         </h2>
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Once you've mastered the fundamentals, it's time to dive into Data
+          Once you&apos;ve mastered the fundamentals, it&apos;s time to dive into Data
           Structures and Algorithms to strengthen your problem-solving
           skills and prepare for technical interviews.
         </p>

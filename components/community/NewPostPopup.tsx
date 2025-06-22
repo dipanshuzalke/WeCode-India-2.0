@@ -15,7 +15,7 @@ import { ImagePlus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-function NewPostPopup({ setShowCreatePost }) {
+function NewPostPopup({ setShowCreatePost }: { setShowCreatePost: (show: boolean) => void }) {
   const [postContent, setPostContent] = React.useState("");
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const { data: session } = useSession();

@@ -9,7 +9,7 @@ export const LearningPoints = ({ points, isLocked = false }: LearningPointsProps
   return (
     <div className="flex flex-col space-y-2">
       <h3 className={`font-medium ${isLocked ? 'text-muted-foreground' : ''}`}>
-        What you'll learn:
+        What you&apos;ll learn:
       </h3>
       <ul className="grid gap-1 text-sm">
         {points.map((point, index) => (

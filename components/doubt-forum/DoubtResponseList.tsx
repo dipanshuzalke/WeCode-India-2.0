@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface DoubtResponse {
   id: string;
@@ -11,7 +12,7 @@ interface DoubtResponse {
 interface DoubtResponseListProps {
   doubtId: string;
   resolved: boolean;
-  refreshKey?: any;
+  refreshKey?: unknown;
 }
 
 export function DoubtResponseList({ doubtId, resolved, refreshKey }: DoubtResponseListProps) {
@@ -52,7 +53,14 @@ export function DoubtResponseList({ doubtId, resolved, refreshKey }: DoubtRespon
               </div>
               <div className="whitespace-pre-line text-base mb-2">{resp.response}</div>
               {resp.image_url && (
-                <img src={resp.image_url} alt="Response attachment" className="max-h-40 rounded border" />
+                <Image
+                  src={resp.image_url}
+                  alt="Response attachment"
+                  className="max-h-40 rounded border"
+                  width={320}
+                  height={160}
+                  style={{ objectFit: 'contain', maxHeight: '10rem' }}
+                />
               )}
             </li>
           ))}

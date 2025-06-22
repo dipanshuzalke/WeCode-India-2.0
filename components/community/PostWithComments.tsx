@@ -3,8 +3,16 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type PostWithCommentsType = {
+  id: string;
+  sender: { name: string; image?: string };
+  message: string;
+  media: { url: string }[];
+  comments: { id: string; user: { name: string }; text: string }[];
+};
+
 export default function PostWithComments({ postId }: { postId: string }) {
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<PostWithCommentsType | null>(null);
 
   useEffect(() => {
     (async () => {

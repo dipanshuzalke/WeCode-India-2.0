@@ -19,26 +19,25 @@ export default function RoadmapDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchRoadmaps = async () => {
+      try {
+        const response = await fetch('/api/get-user-roadmaps');
+        if (!response.ok) throw new Error('Failed to fetch roadmaps');
+        const data = await response.json();
+        setRoadmaps(data);
+      } catch (error) {
+        console.error('Error fetching roadmaps:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load your roadmaps",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchRoadmaps();
-  }, []);
-
-  const fetchRoadmaps = async () => {
-    try {
-      const response = await fetch('/api/get-user-roadmaps');
-      if (!response.ok) throw new Error('Failed to fetch roadmaps');
-      const data = await response.json();
-      setRoadmaps(data);
-    } catch (error) {
-      console.error('Error fetching roadmaps:', error);
-      toast({
-        title: "Error",
-        description: "Failed to load your roadmaps",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [toast]);
 
   const handleViewRoadmap = (roadmapId: string) => {
     router.push(`/roadmap/view?id=${roadmapId}`);

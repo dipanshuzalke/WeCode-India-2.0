@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import { LanguageOption } from "../../data/fundamentalsData";
+import type { LanguageOption } from "@/types";
 
 interface LanguageSelectionProps {
   languages: LanguageOption[];

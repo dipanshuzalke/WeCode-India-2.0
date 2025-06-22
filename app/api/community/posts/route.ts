@@ -3,7 +3,8 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { prismaClient } from "@/lib/prisma"; // adjust if needed
 
-export async function GET(req: NextRequest) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(_req: NextRequest) {
   const posts = await prismaClient.communityPost.findMany({
     include: {
       media: true,

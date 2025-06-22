@@ -15,8 +15,19 @@ import { useSession } from "next-auth/react";
 import CommentsPopup from "./CommentsPopup";
 import LikesPopup from "./LikesPopup";
 
+type Post = {
+  id: string;
+  sender: { name: string; image?: string };
+  message: string;
+  media: { url: string }[];
+  createdAt: string;
+  likeCount: number;
+  commentCount: number;
+  likedByMe: boolean;
+};
+
 function PostsFeed() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Post[]>([]);
   const [commentBoxOpen, setCommentBoxOpen] = useState(false);
   const [likesBoxOpen, setLikesBoxOpen] = useState(false);
   const [currentPostId, setCurrentPostId] = useState<string | null>(null);

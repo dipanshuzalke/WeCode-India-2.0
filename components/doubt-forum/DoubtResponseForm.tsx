@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { uploadToCloudinary } from "@/lib/uploadToCloudinary";
 import { Card, CardContent } from "@/components/ui/card";
 import { Paperclip, Send, X } from "lucide-react";
+import Image from "next/image";
 
 interface DoubtResponseFormProps {
   doubtId: string;
@@ -74,7 +75,7 @@ export function DoubtResponseForm({ doubtId, resolved, onResponseSubmitted }: Do
         try {
           const uploadResult = await uploadToCloudinary(image);
           image_url = uploadResult.url;
-        } catch (uploadErr) {
+        } catch {
           setError("Image upload failed. Please try again or use a different image.");
           setLoading(false);
           return;
@@ -94,8 +95,12 @@ export function DoubtResponseForm({ doubtId, resolved, onResponseSubmitted }: Do
       setSuccess(true);
       if (fileInputRef.current) fileInputRef.current.value = "";
       if (onResponseSubmitted) onResponseSubmitted();
-    } catch (err: any) {
-      setError(err?.message || "Failed to submit response");
+    } catch (err: unknown) {
+      let message = "Failed to submit response";
+      if (typeof err === "object" && err && "message" in err && typeof (err as { message?: string }).message === "string") {
+        message = (err as { message: string }).message;
+      }
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -116,9 +121,11 @@ export function DoubtResponseForm({ doubtId, resolved, onResponseSubmitted }: Do
             >
               {imagePreview ? (
                 <>
-                  <img
+                  <Image
                     src={imagePreview}
                     alt="Preview"
+                    width={32}
+                    height={32}
                     className="w-8 h-8 object-cover rounded-md border shadow inline-block"
                   />
                   <span

@@ -7,11 +7,34 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowRight, FileText, Globe, Layout, Server, Smartphone } from "lucide-react";
 import { Button } from "../ui/button";
 
-interface ProjectCardProps {
-  project: any;
+export interface Project {
+  id: string | number;
+  icon: string;
+  progress?: number;
+  status: string;
+  difficulty: string;
+  title: string;
+  summary: string;
+  description: string;
+  domain: string;
+  timeEstimate: string;
+  githubRepo: string;
+  techStack: string[];
+  slug: string;
+  rating?: number;
+  collaborators?: number;
+  duration?: string;
+  createdAt?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  // Add any other fields as needed
 }
 
-const iconMap: Record<string, React.FC<any>> = {
+interface ProjectCardProps {
+  project: Project;
+}
+
+const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
   Layout,
   Globe,
   FileText,

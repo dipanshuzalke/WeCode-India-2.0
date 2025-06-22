@@ -2,7 +2,7 @@
 
 import React from "react";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
-import { Calendar, Code, FileText, User, Clock, BookOpen, Layers, Code2, FileCode2, GraduationCap } from "lucide-react";
+import { BookOpen, Layers, Code2, FileCode2, GraduationCap } from "lucide-react";
 
 const timelineData = [
   {

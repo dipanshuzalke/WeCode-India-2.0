@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +47,7 @@ export default function SmartReminders({ reminders, onTaskAction }: SmartReminde
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-blue-600" />
-            Today's Focus
+            Today&apos;s Focus
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -133,7 +132,7 @@ export default function SmartReminders({ reminders, onTaskAction }: SmartReminde
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="w-5 h-5 text-purple-600" />
-            This Week's Goal
+            This Week&apos;s Goal
           </CardTitle>
         </CardHeader>
         <CardContent>

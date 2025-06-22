@@ -14,14 +14,11 @@ import {
   Download,
   Eye,
   Edit3,
-  Share2,
   Award,
-  Briefcase,
   Code2,
   ExternalLink,
   TrendingUp,
   MessageSquare,
-  Mail,
   Globe
 } from 'lucide-react';
 
@@ -227,6 +224,12 @@ const ProfileBuildingPage = () => {
   ];
 
   const currentTool = profileTools.find(tool => tool.id === activeTab);
+  if (!currentTool) {
+    // Option 1: Render nothing or a fallback UI
+    return <div className="text-center py-12 text-red-500">Invalid tool selected.</div>;
+    // Option 2: You could set a default tool instead, e.g.:
+    // currentTool = profileTools[0];
+  }
 
   return (
     <div className="min-h-screen bg-background">

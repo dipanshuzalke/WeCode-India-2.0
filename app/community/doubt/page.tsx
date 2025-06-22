@@ -75,7 +75,7 @@ export default function DoubtDashboardPage() {
           {/* Solved/Unsolved filter */}
           <select
             value={status}
-            onChange={e => setStatus(e.target.value as any)}
+            onChange={e => setStatus(e.target.value as "all" | "solved" | "unsolved")}
             className="border rounded px-5 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary/40"
           >
             <option value="all">All</option>
@@ -85,7 +85,7 @@ export default function DoubtDashboardPage() {
           {/* Sort by latest/oldest */}
           <select
             value={sort}
-            onChange={e => setSort(e.target.value as any)}
+            onChange={e => setSort(e.target.value as "latest" | "oldest")}
             className="border rounded px-5 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary/40"
           >
             <option value="latest">Latest</option>

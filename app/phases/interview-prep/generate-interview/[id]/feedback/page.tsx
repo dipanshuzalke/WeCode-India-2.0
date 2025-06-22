@@ -3,8 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
+// Optionally import RouteParams type for clarity
+// import type { RouteParams } from "@/types";
 
-const Feedback = async ({ params }: RouteParams) => {
+const Feedback = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   // Fetch interview and feedback data from API
@@ -57,7 +59,7 @@ const Feedback = async ({ params }: RouteParams) => {
       {/* Interview Breakdown */}
       <div className="flex flex-col gap-4">
         <h2>Breakdown of the Interview:</h2>
-        {feedback?.categoryScores?.map((category: any, index: number) => (
+        {feedback?.categoryScores?.map((category: { name: string; score: number; comment: string }, index: number) => (
           <div key={index}>
             <p className="font-bold">
               {index + 1}. {category.name} ({category.score}/100)

@@ -6,6 +6,14 @@ import { FilterBar } from "../../components/projects/FilterBar";
 import { ProjectGrid } from "../../components/projects/ProjectGrid";
 import HeroSection from "@/components/projects/HeroSection";
 import { Grid3X3, List } from "lucide-react";
+import type { Project as ProjectCardType } from "../../components/projects/ProjectCard";
+
+// Define the Project type based on projects.json
+// (or use the imported ProjectCardType)
+// type Project = ProjectCardType & {
+//   icon?: string;
+//   status?: string;
+// };
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -13,7 +21,7 @@ export default function ProjectsPage() {
   const [category, setCategory] = React.useState("all");
   const [viewMode, setViewMode] = React.useState<"grid" | "list">("grid");
 
-  const filtered = projectsList.filter((project: any) => {
+  const filtered = (projectsList.filter((project) => {
     const q = searchQuery.toLowerCase();
     const matchesSearch =
       project.title.toLowerCase().includes(q) ||
@@ -26,7 +34,13 @@ export default function ProjectsPage() {
       category === "all" || project.domain.toLowerCase().includes(category);
 
     return matchesSearch && matchesDifficulty && matchesCategory;
-  });
+  }).map((project) => {
+    return {
+      ...project,
+      icon: "Layout",
+      status: "Not Started",
+    };
+  }) as ProjectCardType[]);
 
   return (
     <div className="min-h-screen bg-background">

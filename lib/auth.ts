@@ -17,8 +17,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-
-    async jwt({ token, user, account }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
       }
@@ -30,7 +29,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       if (!user.email) return false;
       
       // Check if user exists

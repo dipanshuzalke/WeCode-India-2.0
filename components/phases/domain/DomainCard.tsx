@@ -2,7 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const DomainCard = ({ domain, index, isInView, onClick }) => {
+type Domain = {
+  color: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  projects: number;
+  resources: number;
+};
+
+const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; index: number; isInView: boolean; onClick: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
+import type { AgentProps } from "@/types";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -33,7 +34,6 @@ const Agent = ({
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [lastMessage, setLastMessage] = useState<string>("");
-  const [createdInterviewId, setCreatedInterviewId] = useState<string | null>(null);
 
   useEffect(() => {
     const onCallStart = () => {
@@ -84,7 +84,7 @@ const Agent = ({
 
   // Helper to extract interview details from messages
   function extractInterviewDetails(messages: { role: string; content: string }[]) {
-    let type, role, level, techstack, amount, questions: any[] = [];
+    let type, role, level, techstack, amount, questions: string[] = [];
 
     for (let i = 0; i < messages.length; i++) {
       if (messages[i].role === "assistant" && messages[i].content.toLowerCase().includes("type of interview")) {
@@ -195,7 +195,7 @@ const Agent = ({
       // 2. Log the full AI response to determine the correct property for questions
       console.log("AI response:", aiResponse);
       // TODO: Update this extraction based on the actual structure of aiResponse
-      const generatedQuestions = [];
+      const generatedQuestions: string[] = [];
       // Example: const generatedQuestions = aiResponse.text ? JSON.parse(aiResponse.text) : [];
 
       // 3. Create the interview in your DB
@@ -213,11 +213,7 @@ const Agent = ({
         }),
       });
 
-      const data = await res.json();
-      if (data?.interview?.id) {
-        setCreatedInterviewId(data.interview.id);
-      }
-      // You can now use createdInterviewId for further actions (like feedback)
+      await res.json();
     } else {
       let formattedQuestions = "";
       if (questions) {

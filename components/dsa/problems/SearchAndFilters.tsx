@@ -1,13 +1,7 @@
 import React from "react";
 import {
-  CheckCircle,
-  ChevronRight,
-  CircleEllipsis,
   Search,
-  Filter,
-  ExternalLink,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -17,6 +11,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { dsaQuestions } from "@/data/dsa-questions";
+
+interface SearchAndFiltersProps {
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+  difficultyFilter: string;
+  setDifficultyFilter: (value: string) => void;
+  domainFilter: string;
+  setDomainFilter: (value: string) => void;
+  statusFilter: string;
+  setStatusFilter: (value: string) => void;
+}
+
 function SearchAndFilters({
   searchTerm,
   setSearchTerm,
@@ -26,7 +32,7 @@ function SearchAndFilters({
   setDomainFilter,
   statusFilter,
   setStatusFilter,
-}) {
+}: SearchAndFiltersProps) {
   const uniqueDomains = Array.from(new Set(dsaQuestions.map((q) => q.domain)));
 
   return (

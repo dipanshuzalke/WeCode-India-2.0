@@ -2,8 +2,6 @@
 "use client";
 
 import * as React from "react";
-import { DSAStreakBadges } from "../../../components/dsa/DSAStreakBadges";
-import { AnalyticsHeader } from "../../../components/dsa/problems/AnalyticsHeader";
 import { dsaQuestions } from "../../../data/dsa-questions";
 import SearchAndFilters from "@/components/dsa/problems/SearchAndFilters";
 import ProblemsRows from "@/components/dsa/problems/ProblemsRows";
@@ -11,7 +9,7 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ActivityCard } from "@/components/dsa/problems/ActivityCard";
 import { ContributionCalendar } from "@/components/dsa/problems/ContributionCalendar";
 
-function useStreakFromStorage() {
+function getStreakFromStorage() {
   if (typeof window === "undefined")
     return { solvedToday: 0, dailyStreak: 0, weeklyStreak: 0 };
   try {
@@ -21,8 +19,8 @@ function useStreakFromStorage() {
       dailyStreak = 0,
       weeklyStreak = 0;
     const sorted = [...history].sort((a, b) => b.date.localeCompare(a.date));
-    let cont = true,
-      day = new Date(today);
+    let cont = true;
+    const day = new Date(today);
     for (let i = 0; i < sorted.length; i++) {
       if (sorted[i].date === today) solvedToday = sorted[i].count;
       if (cont && sorted[i].count > 0) {
@@ -40,7 +38,7 @@ function useStreakFromStorage() {
       const dayStr = new Date(now.getTime() - i * 86400000)
         .toISOString()
         .slice(0, 10);
-      const entry = history.find((h: any) => h.date === dayStr);
+      const entry = history.find((h: { date: string; count: number }) => h.date === dayStr);
       weeklyStreak += entry?.count ? 1 : 0;
     }
     return { solvedToday, dailyStreak, weeklyStreak };
@@ -64,7 +62,6 @@ const getDifficultyBadge = (difficulty: string) => {
 };
 
 export default function Page() {
-  const [streak, setStreak] = React.useState(useStreakFromStorage());
   const [searchTerm, setSearchTerm] = React.useState("");
   const [difficultyFilter, setDifficultyFilter] = React.useState("all");
   const [domainFilter, setDomainFilter] = React.useState("all");
@@ -101,8 +98,9 @@ export default function Page() {
   });
 
   React.useEffect(() => {
-    const tick = () => setStreak(useStreakFromStorage());
-    const interval = setInterval(tick, 2000);
+    const interval = setInterval(() => {
+      getStreakFromStorage();
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 

@@ -3,14 +3,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Check, Trophy, Rocket, Star } from "lucide-react";
-import { Task, WeekTasks, TaskProgress } from "@/types/taskTypes";
+import { Check, Trophy, Rocket } from "lucide-react";
+import { WeekTasks, TaskProgress } from "@/types/taskTypes";
 import { DashboardAnalytics } from "@/types/dashboardTypes";
-import { SmartReminders as SmartRemindersType } from "@/types/reminderTypes";
-import { AIFeedback as AIFeedbackType } from "@/types/feedbackTypes";
 import { calculateDashboardAnalytics } from "@/utils/dashboardAnalytics";
-import { generateSmartReminders } from "@/utils/smartReminder";
-import { generateAIFeedback } from "@/utils/aiFeedback";
 // import UserDashboard from "@/components/ai-roadmap/RoadmapAnalytics";
 // import SmartReminders from "@/components/ai-roadmap/SmartReminders";
 // import AIFeedback from "@/components/ai-roadmap/AIFeedback";
@@ -19,8 +15,6 @@ interface TaskTrackerProps {
   weeklyTasks: WeekTasks[];
   onProgressUpdate?: (progress: TaskProgress) => void;
   onAnalyticsUpdate?: (analytics: DashboardAnalytics) => void;
-  showDashboard?: boolean;
-  userName?: string;
   roadmapId?: string;
 }
 
@@ -28,8 +22,6 @@ export default function TaskTracker({
   weeklyTasks, 
   onProgressUpdate, 
   onAnalyticsUpdate,
-  showDashboard = true,
-  userName,
   roadmapId
 }: TaskTrackerProps) {
   const [tasks, setTasks] = useState<WeekTasks[]>(() => {
@@ -46,9 +38,6 @@ export default function TaskTracker({
     completionPercentage: 0,
     currentLevel: 1,
   });
-  const [analytics, setAnalytics] = useState<DashboardAnalytics | null>(null);
-  const [smartReminders, setSmartReminders] = useState<SmartRemindersType | null>(null);
-  const [aiFeedback, setAiFeedback] = useState<AIFeedbackType | null>(null);
   
   const { toast } = useToast();
 
@@ -73,16 +62,7 @@ export default function TaskTracker({
 
     // Calculate detailed analytics
     const newAnalytics = calculateDashboardAnalytics(tasks);
-    setAnalytics(newAnalytics);
     onAnalyticsUpdate?.(newAnalytics);
-
-    // Generate smart reminders
-    const newSmartReminders = generateSmartReminders(tasks);
-    setSmartReminders(newSmartReminders);
-
-    // Generate AI feedback
-    const newAiFeedback = generateAIFeedback(tasks);
-    setAiFeedback(newAiFeedback);
   }, [tasks, onProgressUpdate, onAnalyticsUpdate]);
 
   // When roadmapId or weeklyTasks change, re-check localStorage or use new weeklyTasks

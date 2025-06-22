@@ -149,7 +149,7 @@ const WebDevelopmentPage = () => {
     { name: "Docker", level: 78, color: "from-blue-600 to-blue-800" }
   ];
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Beginner': return 'text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30';
       case 'Intermediate': return 'text-yellow-700 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30';

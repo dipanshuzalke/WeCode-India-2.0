@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +12,6 @@ import {
   SelectItem,
   SelectValue,
 } from "@/components/ui/select";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import Loader from "@/components/Loader";
@@ -21,7 +20,7 @@ import {
   generateWeeklyBreakdown,
 } from "@/utils/generateRoadmap";
 import { generateRoadmapPlan } from "@/utils/roadmapGenerator";
-import { MonthPlan, RoadmapInput } from "@/types/roadmapTypes";
+import { RoadmapInput } from "@/types/roadmapTypes";
 import RoadmapFlow from "@/components/ai-roadmap/RoadmapFlow";
 
 const initialState = {
@@ -32,22 +31,14 @@ const initialState = {
   target_companies_or_roles: "",
 };
 
-function capitalize(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
 export default function RoadmapInputForm() {
   const router = useRouter();
-  const { data: session, status } = useSession();
   const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const [showPlan, setShowPlan] = useState(false);
   const [roadmapInput, setRoadmapInput] = useState<RoadmapInput | null>(null);
-  const [showStep2, setShowStep2] = useState(false);
   const [generating, setGenerating] = useState(false);
-  const [showStep3, setShowStep3] = useState(false);
-  const [showTaskTracker, setShowTaskTracker] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -141,10 +132,14 @@ export default function RoadmapInputForm() {
         setGenerating(false);
         router.replace(`/roadmap/view?id=${data.id}`);
       }, 8000);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      let message = "Unknown error";
+      if (typeof error === "object" && error && "message" in error && typeof (error as { message?: string }).message === "string") {
+        message = (error as { message: string }).message;
+      }
       toast({
         title: "Failed to submit",
-        description: error.message,
+        description: message,
         variant: "destructive",
       });
     } finally {
@@ -177,7 +172,7 @@ export default function RoadmapInputForm() {
               Creating Your Roadmap
             </h1>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-              We're crafting a personalized learning path tailored to your goals and schedule. This will just take a moment.
+              We&apos;re crafting a personalized learning path tailored to your goals and schedule. This will just take a moment.
             </p>
           </div>
           <Loader />
@@ -191,14 +186,12 @@ export default function RoadmapInputForm() {
       goal,
       skillLevel,
       months,
-      dailyHours,
-      targetCompaniesOrRoles,
     } = roadmapInput;
     const plan = generateMonthWisePlan(goal, skillLevel, months);
-    const weeklyPlan = generateWeeklyBreakdown(roadmapInput, plan);
+    generateWeeklyBreakdown(roadmapInput, plan);
 
     // Use the new utility for capstone, mock, and revision
-    const { capstones, mockSection, revisionSection, goalSlug } = generateRoadmapPlan(roadmapInput);
+    generateRoadmapPlan(roadmapInput);
 
     return (
       <RoadmapFlow roadmapInput={roadmapInput} />
@@ -229,7 +222,7 @@ export default function RoadmapInputForm() {
             Create Your Learning Roadmap
           </h1>
           <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            Share your learning goals and preferences with us. We'll create a structured, personalized roadmap to help you achieve your objectives efficiently.
+            Share your learning goals and preferences with us. We&apos;ll create a structured, personalized roadmap to help you achieve your objectives efficiently.
           </p>
         </div>
 
@@ -527,7 +520,7 @@ export default function RoadmapInputForm() {
               </Button>
 
               <p className="text-center text-sm text-neutral-500 dark:text-neutral-500 leading-relaxed">
-                By submitting, you'll receive a personalized learning roadmap based on your preferences and goals.
+                By submitting, you&apos;ll receive a personalized learning roadmap based on your preferences and goals.
               </p>
             </div>
           </div>

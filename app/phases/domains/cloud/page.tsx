@@ -4,10 +4,6 @@ import {
   Cloud,
   Code,
   Layers,
-  Server,
-  Database,
-  Shield,
-  ChevronRight,
   Star,
   Users,
   Clock,
@@ -17,9 +13,6 @@ import {
   ExternalLink,
   Sun,
   Moon,
-  Zap,
-  Globe,
-  Settings,
 } from "lucide-react";
 
 const CloudComputingPage = () => {
@@ -218,8 +211,7 @@ const CloudComputingPage = () => {
     },
   ];
 
-  const getDifficultyColor = (difficulty) => {
-    const baseClasses = darkMode ? "dark:" : "";
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner":
         return `text-green-600 bg-green-100 ${
@@ -244,7 +236,7 @@ const CloudComputingPage = () => {
     }
   };
 
-  const getProviderColor = (provider) => {
+  const getProviderColor = (provider: string) => {
     switch (provider) {
       case "AWS":
         return "text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30";

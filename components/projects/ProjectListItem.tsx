@@ -14,22 +14,10 @@ import {
   Calendar,
   Tag
 } from "lucide-react";
+import type { Project } from "./ProjectCard";
 
 interface ProjectListItemProps {
-  project: {
-    id: string;
-    title: string;
-    description: string;
-    difficulty: string;
-    domain: string;
-    techStack: string[];
-    duration: string;
-    collaborators?: number;
-    rating?: number;
-    githubUrl?: string;
-    liveUrl?: string;
-    createdAt?: string;
-  };
+  project: Project;
 }
 
 const difficultyColors = {

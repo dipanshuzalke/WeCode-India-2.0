@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   atomDark,
-  atomLight,
+  prism,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
   ArrowLeft,
@@ -27,7 +27,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import { dsaTopics } from "../../../../data/dsa-topics";
 import { dsaQuestions } from "../../../../data/dsa-questions";
 
@@ -62,12 +62,12 @@ export default function TopicDocumentationPage() {
   // Create a custom dark style by overriding atomDark's background to pure black
   const customDarkStyle = {
     ...atomDark,
-    "code[class*=\"language-\"]": {
-      ...((atomDark as any)["code[class*=\"language-\"]"] || {}),
+    "code[class*='language-']": {
+      ...((atomDark as Record<string, unknown>)["code[class*='language-']"] || {}),
       background: "#0a0a0a", // Pure black with slight variation
     },
-    "pre[class*=\"language-\"]": {
-      ...((atomDark as any)["pre[class*=\"language-\"]"] || {}),
+    "pre[class*='language-']": {
+      ...((atomDark as Record<string, unknown>)["pre[class*='language-']"] || {}),
       background: "#0a0a0a", // Pure black with slight variation
     },
   };
@@ -207,11 +207,11 @@ export default function TopicDocumentationPage() {
                 <div className="prose prose-gray dark:prose-invert max-w-none prose-lg [&>*]:mb-4 [&>ul]:ml-6 [&>ol]:ml-6 [&>li]:mt-1 [&>li]:mb-1 [&>h3]:pl-2 [&>h4]:pl-4 [&>p]:text-justify [&>p]:leading-relaxed">
                   <ReactMarkdown
                     components={{
-                      code({ node, inline, className, children, ...props }) {
+                      code: ({ inline, className, children, ...props }: React.ComponentProps<'code'> & { inline?: boolean }) => {
                         const match = /language-(\w+)/.exec(className || "");
                         return !inline && match ? (
                           <SyntaxHighlighter
-                            style={isDark ? customDarkStyle : atomLight}
+                            style={isDark ? customDarkStyle : prism}
                             language={match[1]}
                             PreTag="div"
                             className="rounded-xl overflow-hidden shadow-sm"
@@ -251,7 +251,7 @@ export default function TopicDocumentationPage() {
                           </td>
                         );
                       },
-                    }}
+                    } as Components}
                   >
                     {topic.description}
                   </ReactMarkdown>

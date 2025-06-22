@@ -1,4 +1,3 @@
-
 import { Progress } from "@/components/ui/progress";
 
 export function ProgressTracker({
@@ -9,7 +8,7 @@ export function ProgressTracker({
   totalCount: number;
 }) {
   const percent = totalCount === 0 ? 0 : Math.round((completeCount / totalCount) * 100);
-  let message = percent === 100
+  const message = percent === 100
     ? "🎉 Project Complete! Awesome work."
     : percent >= 60
     ? "🚀 You're 60% done! Keep building!"

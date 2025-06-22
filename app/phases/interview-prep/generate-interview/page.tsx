@@ -1,11 +1,10 @@
 "use client";
 
 import Agent from "@/components/ai-interviewer/Agent";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { useSession } from "next-auth/react";
 
-const Page = async () => {
-  const session = await getServerSession(authOptions);
+const Page = () => {
+  const { data: session } = useSession();
   const user = session?.user;
 
   return (
@@ -13,7 +12,7 @@ const Page = async () => {
       <h3>Interview generation</h3>
 
       <Agent
-        userName={user?.name!}
+        userName={user?.name || ""}
         userId={user?.id}
         type="generate"
       />

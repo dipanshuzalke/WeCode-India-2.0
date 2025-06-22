@@ -26,14 +26,33 @@ import {
 } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 
-interface PageProps {
-  params: { slug: string };
-}
+export default function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const [resolvedParams, setResolvedParams] = React.useState<{ slug: string } | null>(null);
+  const [isClient, setIsClient] = React.useState(false);
 
-export default function ProjectDetailPage({ params }: PageProps) {
-  const { slug } = params;
+  React.useEffect(() => {
+    params.then(setResolvedParams);
+  }, [params]);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const router = useRouter();
+
+  const { slug } = resolvedParams ?? {};
   const project = projectsData.find((p) => p.slug === slug);
+
+  // Always call the hook unconditionally to avoid hook order issues
+  const { completedSteps, toggleStep } = useLocalProjectProgress(project?.id || "");
+
+  if (!isClient) {
+    return null;
+  }
+
+  if (!resolvedParams) {
+    return <div>Loading...</div>;
+  }
 
   if (!project) {
     return (
@@ -41,7 +60,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
         <Card className="p-8 text-center max-w-md">
           <h1 className="text-xl font-semibold mb-3">Project not found</h1>
           <p className="text-sm text-muted-foreground mb-4">
-            The project you're looking for doesn't exist.
+            The project you&apos;re looking for doesn&apos;t exist.
           </p>
           <Button onClick={() => router.push("/projects")} size="sm">
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -52,7 +71,6 @@ export default function ProjectDetailPage({ params }: PageProps) {
     );
   }
 
-  const { completedSteps, toggleStep } = useLocalProjectProgress(project.id);
   const totalSteps = project.phases.reduce((sum, ph) => sum + ph.steps.length, 0);
   const completionPercentage = Math.round((completedSteps.length / totalSteps) * 100);
 
@@ -269,9 +287,23 @@ export default function ProjectDetailPage({ params }: PageProps) {
               <Card className="p-6">
                 <h3 className="font-semibold mb-4">Learning Resources</h3>
                 <div className="space-y-3">
-                  {project.resources.map((resource) => (
-                    <ResourceCard key={resource.title + resource.url} resource={resource} />
-                  ))}
+                  {project.resources.map((resource) => {
+                    // Map resource.type to allowed values for ResourceCard
+                    let mappedType: "video" | "doc" | "github" = "doc";
+                    if (resource.type === "video") mappedType = "video";
+                    else if (resource.type === "github") mappedType = "github";
+                    // Pass only the required props
+                    return (
+                      <ResourceCard
+                        key={resource.title + resource.url}
+                        resource={{
+                          type: mappedType,
+                          title: resource.title,
+                          url: resource.url,
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </Card>
             </div>

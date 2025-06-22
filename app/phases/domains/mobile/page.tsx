@@ -198,7 +198,7 @@ const MobileDevelopmentPage = () => {
     },
   ];
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner":
         return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";
@@ -213,7 +213,7 @@ const MobileDevelopmentPage = () => {
     }
   };
 
-  const getPlatformIcon = (platform) => {
+  const getPlatformIcon = (platform: string) => {
     if (platform.includes("iOS") && platform.includes("Android")) {
       return (
         <div className="flex space-x-1">

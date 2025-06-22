@@ -1,20 +1,21 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import UserDashboard from "@/components/ai-roadmap/RoadmapAnalytics";
 import { DashboardAnalytics } from "@/types/dashboardTypes";
 import { calculateDashboardAnalytics } from "@/utils/dashboardAnalytics";
 import { generateMonthWisePlan, generateWeeklyBreakdown } from "@/utils/generateRoadmap";
 import { convertToTasks } from "@/utils/taskConverter";
+import type { WeekTasks } from "@/types/taskTypes";
 
-export default function RoadmapAnalyticsPage() {
+function RoadmapAnalyticsPageInner() {
   const searchParams = useSearchParams();
   const roadmapId = searchParams.get("id");
   const [analytics, setAnalytics] = useState<DashboardAnalytics | null>(null);
   const [userName, setUserName] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(true);
-  const [mergedTasks, setMergedTasks] = useState([]);
+  const [mergedTasks, setMergedTasks] = useState<WeekTasks[]>([]);
 
   useEffect(() => {
     if (!roadmapId) return;
@@ -50,7 +51,7 @@ export default function RoadmapAnalyticsPage() {
                 }),
               };
             });
-          } catch (e) {
+          } catch {
             // fallback to fullTasks
           }
         }
@@ -78,5 +79,13 @@ export default function RoadmapAnalyticsPage() {
     <div className="max-w-4xl mx-auto py-10">
       <UserDashboard analytics={analytics} userName={userName} mergedTasks={mergedTasks} />
     </div>
+  );
+}
+
+export default function RoadmapAnalyticsPage() {
+  return (
+    <Suspense>
+      <RoadmapAnalyticsPageInner />
+    </Suspense>
   );
 } 

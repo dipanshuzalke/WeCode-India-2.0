@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -49,8 +49,7 @@ export function DoubtSubmissionForm({ onSuccess }: { onSuccess?: () => void }) {
   const [values, setValues] = useState<FormValues>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [doubtId, setDoubtId] = useState<string | null>(null);
-  const [resolved, setResolved] = useState(false);
+  const [resolved] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   // Handle image preview
@@ -105,7 +104,7 @@ export function DoubtSubmissionForm({ onSuccess }: { onSuccess?: () => void }) {
         try {
           const uploadResult = await uploadToCloudinary(values.image);
           image_url = uploadResult.url;
-        } catch (uploadErr) {
+        } catch {
           toast({
             title: "Image upload failed",
             description: "Could not upload image. Please try again or use a different image.",
@@ -128,19 +127,17 @@ export function DoubtSubmissionForm({ onSuccess }: { onSuccess?: () => void }) {
       if (!resp.ok) {
         throw new Error("Failed to submit doubt");
       }
-      const result = await resp.json();
-      setDoubtId(result.doubt?.id || null);
-      setResolved(result.doubt?.resolved ?? false);
+      await resp.json();
       toast({
         title: "Doubt submitted!",
         description: "Your doubt has been posted and will soon be answered.",
       });
       if (onSuccess) onSuccess();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: "Submission failed",
         description:
-          err?.message ||
+          err instanceof Error ? err.message :
           "Something went wrong submitting your doubt. Please try again.",
         variant: "destructive",
       });
@@ -151,17 +148,6 @@ export function DoubtSubmissionForm({ onSuccess }: { onSuccess?: () => void }) {
     }
     setValues(initialState);
     setImagePreview(null);
-  };
-
-  // Helper for resolving feedback
-  const handleFeedback = async (wasResolved: boolean) => {
-    if (!doubtId) return;
-    if (wasResolved) {
-      toast({ title: "Doubt resolved!", description: "Glad we could help!" });
-      setResolved(true);
-    } else {
-      toast({ title: "Let us know what you still need!" });
-    }
   };
 
   return (

@@ -205,7 +205,7 @@ export default function UserDashboard({ analytics, userName, mergedTasks }: User
         <CardContent>
           <div className="text-center space-y-2">
             <p className="text-gray-600">
-              At your current pace, you're estimated to complete your roadmap by:
+              At your current pace, you&apos;re estimated to complete your roadmap by:
             </p>
             <div className="text-xl font-bold text-green-700">
               {estimatedCompletionDate}

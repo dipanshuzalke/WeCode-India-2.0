@@ -4,6 +4,7 @@ import {
   Terminal,
   Brain,
 } from "lucide-react";
+import type { LanguageOption, Milestone } from "@/types";
 
 export interface Resource {
   id: number;
@@ -19,20 +20,6 @@ export interface Resource {
     type: string;
     url: string;
   }[];
-}
-
-export interface Milestone {
-  title: string;
-  description: string;
-  completed: boolean;
-}
-
-export interface LanguageOption {
-  name: string;
-  description: string;
-  pros: string[];
-  icon: string;
-  popularity: string;
 }
 
 export const resources: Resource[] = [
@@ -122,34 +109,6 @@ export const resources: Resource[] = [
   },
 ];
 
-export const milestones: Milestone[] = [
-  {
-    title: "Complete First Program",
-    description: "Write and run your first 'Hello World' program",
-    completed: true,
-  },
-  {
-    title: "Understand Variables",
-    description: "Work with different data types and variables",
-    completed: true,
-  },
-  {
-    title: "Master Control Flow",
-    description: "Use if statements, loops, and functions effectively",
-    completed: true,
-  },
-  {
-    title: "Git Repository Setup",
-    description: "Create your first Git repository and make commits",
-    completed: false,
-  },
-  {
-    title: "Solve Practice Problems",
-    description: "Complete 10 basic programming challenges",
-    completed: false,
-  },
-];
-
 export const languageOptions: LanguageOption[] = [
   {
     name: "Python",
@@ -180,3 +139,33 @@ export const languageOptions: LanguageOption[] = [
     popularity: "72%",
   },
 ];
+
+export const milestones: Milestone[] = [
+  {
+    title: "Complete First Program",
+    description: "Write and run your first 'Hello World' program",
+    completed: true,
+  },
+  {
+    title: "Understand Variables",
+    description: "Work with different data types and variables",
+    completed: true,
+  },
+  {
+    title: "Master Control Flow",
+    description: "Use if statements, loops, and functions effectively",
+    completed: true,
+  },
+  {
+    title: "Git Repository Setup",
+    description: "Create your first Git repository and make commits",
+    completed: false,
+  },
+  {
+    title: "Solve Practice Problems",
+    description: "Complete 10 basic programming challenges",
+    completed: false,
+  },
+];
+
+export {};

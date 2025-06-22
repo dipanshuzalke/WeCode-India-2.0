@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import { Milestone } from "../../data/fundamentalsData";
+import type { Milestone } from "@/types";
 
 interface MilestonesSectionProps {
   milestones: Milestone[];

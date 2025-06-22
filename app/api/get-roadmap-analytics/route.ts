@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
     // Fetch roadmap from DB
     const roadmap = await prismaClient.aiRoadmapInput.findFirst({
-      where: { id: roadmapId, userEmail: session.user.email }
+      where: { id: roadmapId, userId: session.user.id }
     });
     if (!roadmap) {
       return NextResponse.json({ error: 'Roadmap not found' }, { status: 404 });
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
 
     console.log('All weeks in tasks:', weekTasks);
 
-    return NextResponse.json({ analytics, userName: roadmap.userName || session.user.name });
+    return NextResponse.json({ analytics, userName: session.user.name });
   } catch (error) {
     console.error('Error generating analytics:', error);
     return NextResponse.json({ error: 'Error generating analytics' }, { status: 500 });

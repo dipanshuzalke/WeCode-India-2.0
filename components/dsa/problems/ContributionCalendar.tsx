@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import {
   Tooltip,
@@ -80,7 +79,6 @@ function buildGrid(data: typeof activityData) {
   const weeks: { date: string; easy: number; medium: number; hard: number }[][] = [];
   let week: typeof weeks[number] = [];
   for (let i = 0; i < data.length; i++) {
-    const dayOfWeek = new Date(data[i].date).getDay(); // Sun=0 ... Sat=6
     week.push(data[i]);
     if (week.length === 7 || i === data.length - 1) {
       weeks.push(week);

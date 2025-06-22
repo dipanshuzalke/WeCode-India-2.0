@@ -1,5 +1,5 @@
 import React from "react";
-import { Resource } from "../../data/fundamentalsData";
+import type { Resource } from "@/types";
 import ResourceCard from "./ResourceCard";
 
 interface LearningResourcesProps {

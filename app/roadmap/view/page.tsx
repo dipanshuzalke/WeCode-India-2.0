@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import RoadmapFlow from "@/components/ai-roadmap/RoadmapFlow";
 import { RoadmapInput } from "@/types/roadmapTypes";
 import { useToast } from "@/components/ui/use-toast";
 
-export default function ViewRoadmapPage() {
+function ViewRoadmapPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
@@ -14,33 +14,32 @@ export default function ViewRoadmapPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchRoadmap = async (roadmapId: string) => {
+      try {
+        const response = await fetch(`/api/get-user-roadmaps?id=${roadmapId}`);
+        if (!response.ok) throw new Error('Failed to fetch roadmap');
+        const data = await response.json();
+        setRoadmapInput(data);
+      } catch (error) {
+        console.error('Error fetching roadmap:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load the roadmap",
+          variant: "destructive",
+        });
+        router.push('/roadmap');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const roadmapId = searchParams.get('id');
     if (!roadmapId) {
       router.push('/roadmap');
       return;
     }
-
     fetchRoadmap(roadmapId);
-  }, [searchParams, router]);
-
-  const fetchRoadmap = async (roadmapId: string) => {
-    try {
-      const response = await fetch(`/api/get-user-roadmaps?id=${roadmapId}`);
-      if (!response.ok) throw new Error('Failed to fetch roadmap');
-      const data = await response.json();
-      setRoadmapInput(data);
-    } catch (error) {
-      console.error('Error fetching roadmap:', error);
-      toast({
-        title: "Error",
-        description: "Failed to load the roadmap",
-        variant: "destructive",
-      });
-      router.push('/roadmap');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [searchParams, router, toast]);
 
   if (loading) {
     return (
@@ -55,4 +54,12 @@ export default function ViewRoadmapPage() {
   }
 
   return <RoadmapFlow roadmapInput={roadmapInput} />;
+}
+
+export default function ViewRoadmapPage() {
+  return (
+    <Suspense>
+      <ViewRoadmapPageInner />
+    </Suspense>
+  );
 } 

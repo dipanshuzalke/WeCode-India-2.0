@@ -7,6 +7,7 @@ import { DoubtResponseList } from "@/components/doubt-forum/DoubtResponseList";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import Image from "next/image";
 
 interface Doubt {
   id: string;
@@ -67,7 +68,7 @@ export default function DoubtDetailPage() {
         .then((res) => res.json())
         .then((data) => setDoubt(data.doubt))
         .finally(() => setLoading(false));
-    } catch (err) {
+    } catch {
       toast({ title: "Error", description: "Could not mark as resolved.", variant: "destructive" });
     }
   };
@@ -95,7 +96,7 @@ export default function DoubtDetailPage() {
           ))}
         </div>
         {doubt.image_url && (
-          <img src={doubt.image_url} alt="Doubt attachment" className="max-h-48 rounded border my-2" />
+          <Image src={doubt.image_url} alt="Doubt attachment" width={400} height={192} className="max-h-48 rounded border my-2" style={{objectFit: 'contain'}} />
         )}
         {doubt.resolved && (
           <div className="mt-2 text-green-700 font-semibold flex items-center gap-2">

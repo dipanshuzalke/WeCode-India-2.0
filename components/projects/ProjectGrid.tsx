@@ -4,9 +4,10 @@ import * as React from "react";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectListItem } from "./ProjectListItem";
 import { FileText } from "lucide-react";
+import type { Project } from "./ProjectCard";
 
 interface ProjectGridProps {
-  projects: any[];
+  projects: Project[];
   viewMode: "grid" | "list";
 }
 
@@ -17,7 +18,7 @@ export function ProjectGrid({ projects, viewMode }: ProjectGridProps) {
         <FileText className="h-12 w-12 text-muted-foreground mb-4" />
         <h3 className="text-xl font-medium">No projects found</h3>
         <p className="text-muted-foreground text-center mt-2">
-          Try adjusting your search or filters to find what you're looking for.
+          Try adjusting your search or filters to find what you&apos;re looking for.
         </p>
       </div>
     );

@@ -6,8 +6,6 @@ import {
   Code,
   Layers,
   Zap,
-  Shield,
-  ChevronRight,
   Star,
   Users,
   Clock,
@@ -228,7 +226,7 @@ const BackendDevOpsPage = () => {
     },
   ];
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner":
         return "text-green-700 bg-green-100 dark:text-green-300 dark:bg-green-900/30";
@@ -243,7 +241,7 @@ const BackendDevOpsPage = () => {
     }
   };
 
-  const getTypeIcon = (type) => {
+  const getTypeIcon = (type: string) => {
     switch (type) {
       case "Infrastructure":
         return <Server className="w-4 h-4" />;

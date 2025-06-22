@@ -154,6 +154,11 @@ const getInitialNodesAndEdges = (
 //   months: 6
 // };
 
+// Helper to enforce Task status type
+function toTaskStatus(status: unknown): 'completed' | 'incomplete' {
+  return status === 'completed' ? 'completed' : 'incomplete';
+}
+
 export default function RoadmapFlow({
   roadmapInput,
   roadmapId,
@@ -168,7 +173,6 @@ export default function RoadmapFlow({
     null
   );
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showWeeklyNodes, setShowWeeklyNodes] = useState(false);
   const [showTasks, setShowTasks] = useState(false);
   const [selectedTaskWeekIndex, setSelectedTaskWeekIndex] = useState<
     number | null
@@ -214,7 +218,7 @@ export default function RoadmapFlow({
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
-    []
+    [setEdges]
   );
 
   const onNodeClick = useCallback(
@@ -287,13 +291,14 @@ export default function RoadmapFlow({
       }
       // Handle week node click
       else if (node.id.startsWith("week-")) {
-        const [_, monthIndex, weekIndex] = node.id.split("-").map(Number);
+        const parts = node.id.split("-").map(Number);
+        const weekIndex = parts[2];
         setSelectedWeekIndex(weekIndex - 1);
         setShowTasks(false);
         setSelectedTaskWeekIndex(weekIndex - 1);
       }
     },
-    [nodes, monthPlans, roadmapInput]
+    [nodes, monthPlans, roadmapInput, setNodes, setEdges]
   );
 
   const selectedMonth =
@@ -307,37 +312,18 @@ export default function RoadmapFlow({
       ? weeklyBreakdown.weekly[selectedWeekIndex]
       : null;
 
-  // Format tasks for TaskTracker
-  const formatTasksForTracker = () => {
-    if (!selectedMonth || !weeklyBreakdown) return [];
-    return weeklyBreakdown.weekly.map((week, weekIndex) => ({
-      month: selectedMonth.month,
-      monthTitle: selectedMonth.title,
-      week: weekIndex + 1,
-      weekTitle: week.weekTitle,
-      weekLabel: `Week ${weekIndex + 1}`,
-      tasks: week.tasks.map((task, taskIndex) => ({
-        id: `${selectedMonth.month}-${week.week}-${taskIndex}`,
-        title: task,
-        description: week.weekDesc,
-        status: "incomplete" as const,
-        estimatedTime: "2-3 hours",
-      })),
-    }));
-  };
-
   const memoizedNodeTypes = useMemo(() => nodeTypes, []);
 
   console.log('selectedMonth:', selectedMonth);
   console.log('weeklyBreakdown:', weeklyBreakdown);
   console.log('selectedWeekIndex:', selectedWeekIndex);
 
-  const savedProgress = JSON.parse(localStorage.getItem(`roadmapTasks_${roadmapId}`) || '[]');
+  const savedProgress = JSON.parse(localStorage.getItem(`roadmapTasks_${roadmapId}`) || '[]') as { month: number; week: number; tasks: Record<string, unknown>[] }[];
 
   const mergedWeeks = (selectedMonth && weeklyBreakdown)
-    ? weeklyBreakdown.weekly.map((week, weekIndex) => {
-        const savedWeek = (savedProgress as any[]).find(
-          (w: any) =>
+    ? weeklyBreakdown.weekly.map((week) => {
+        const savedWeek = savedProgress.find(
+          (w) =>
             typeof w === 'object' &&
             w !== null &&
             typeof w.month === 'number' &&
@@ -350,13 +336,13 @@ export default function RoadmapFlow({
           monthTitle: selectedMonth.title,
           week: week.week,
           weekTitle: week.weekTitle,
-          weekLabel: (week as any).weekLabel ?? `Week ${week.week}`,
+          weekLabel: String(typeof week === 'object' && week !== null && 'weekLabel' in week ? (week as Record<string, unknown>).weekLabel : `Week ${week.week}`),
           tasks: week.tasks.map((task, taskIndex) => {
             // Find the saved task by unique ID
             const savedTask = savedWeek?.tasks?.find(
-              (t: any) => t && typeof t === 'object' && 'id' in t && t.id === (
+              (t) => t && typeof t === 'object' && 'id' in t && (t as Record<string, unknown>).id === (
                 typeof task === 'object' && task !== null && 'id' in task
-                  ? (task as any).id
+                  ? (task as Record<string, unknown>).id
                   : `${selectedMonth.month}-${week.week}-${taskIndex}`
               )
             );
@@ -370,18 +356,18 @@ export default function RoadmapFlow({
                 {},
                 task,
                 {
-                  status: savedTask.status,
-                  completedAt: savedTask.completedAt,
+                  status: toTaskStatus((savedTask as Record<string, unknown>)?.status) as 'completed' | 'incomplete',
+                  completedAt: (savedTask as Record<string, unknown>).completedAt,
                 }
               );
             }
             // fallback: ensure all required fields
             return {
               id: `${selectedMonth.month}-${week.week}-${taskIndex}`,
-              title: typeof task === 'string' ? task : String((task as any)?.title ?? ''),
-              description: typeof task === 'object' && task !== null && 'description' in task ? (task as any).description : '',
-              status: savedTask?.status ?? 'incomplete',
-              estimatedTime: typeof task === 'object' && task !== null && 'estimatedTime' in task ? (task as any).estimatedTime : '2-3 hours',
+              title: typeof task === 'string' ? task : String((task as Record<string, unknown>)?.title ?? ''),
+              description: typeof task === 'object' && task !== null && 'description' in task ? String((task as Record<string, unknown>).description) : '',
+              status: toTaskStatus((savedTask as Record<string, unknown>)?.status) as 'completed' | 'incomplete',
+              estimatedTime: typeof task === 'object' && task !== null && 'estimatedTime' in task ? String((task as Record<string, unknown>).estimatedTime) : '2-3 hours',
             };
           }),
         };
@@ -687,7 +673,6 @@ export default function RoadmapFlow({
                       <div className="mt-4">
                         <TaskTracker
                           weeklyTasks={mergedWeeks}
-                          showDashboard={false}
                           roadmapId={roadmapId}
                         />
                       </div>

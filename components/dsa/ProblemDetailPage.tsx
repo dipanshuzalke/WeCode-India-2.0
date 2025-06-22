@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ArrowLeft, CheckCircle, CircleEllipsis, Clock, Target, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle, CircleEllipsis, Target, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { dsaQuestions, DsaQuestion } from "../../data/dsa-questions";
+import { dsaQuestions } from "../../data/dsa-questions";
 
 interface ProblemDetailPageProps {
   problemId: number;

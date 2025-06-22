@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   createAiInterviewPrisma,
   getAiInterviewsByUserPrisma,
-  createInterviewFeedbackPrisma,
-  getInterviewFeedbacksPrisma,
+  // createInterviewFeedbackPrisma,
+  // getInterviewFeedbacksPrisma,
 } from '@/lib/actions/general.action';
 import { prismaClient } from '@/lib/prisma';
 import { generateObject } from 'ai';
@@ -50,7 +50,8 @@ export async function POST(req: NextRequest) {
     }
   } else if (body.type === 'feedback') {
     console.log("POST /api/interview type=feedback called");
-    const { interviewId, userId, transcript, feedbackId } = body;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { interviewId, userId: _userId, transcript, feedbackId: _feedbackId } = body;
     try {
       // Format transcript for AI
       const formattedTranscript = transcript
