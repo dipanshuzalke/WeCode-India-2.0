@@ -6,27 +6,62 @@ import {
   TrendingUp,
   Activity,
   Calendar,
-  ChevronRight,
   Folder,
   CheckCircle,
-  Circle,
   Code,
-  Target,
   Flame,
-  Award,
   BarChart3,
 } from "lucide-react";
 
+interface ProjectData {
+  completedSteps: string[];
+  lastVisited: string;
+}
+
+interface ActivityItem {
+  id: string;
+  type: string;
+  project: string;
+  step?: string;
+  timestamp: string;
+  description: string;
+}
+
+interface StreakData {
+  current: number;
+  longest: number;
+  today: boolean;
+}
+
+interface Stats {
+  totalProjects: number;
+  activeProjects: number;
+  completedSteps: number;
+  recentlyWorked: number;
+}
+
+interface DSAStats {
+  totalSolved: number;
+  uniqueProblems: number;
+  recentlySolved: number;
+  highestProblem: number;
+}
+
+interface ProjectStatus {
+  status: string;
+  color: string;
+}
+
 const FunctionalDashboardPage = () => {
-  const [projectData, setProjectData] = useState({});
-  const [recentActivity, setRecentActivity] = useState([]);
-  const [dsaData, setDsaData] = useState([]);
-  const [streakData, setStreakData] = useState({
+  const [projectData, setProjectData] = useState<Record<string, ProjectData>>({});
+  const [recentActivity, setRecentActivity] = useState<ActivityItem[]>([]);
+  const [dsaData, setDsaData] = useState<number[]>([]);
+  const [streakData, setStreakData] = useState<StreakData>({
     current: 1,
     longest: 1,
     today: false,
   });
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<Stats>({
     totalProjects: 0,
     activeProjects: 0,
     completedSteps: 0,
@@ -34,16 +69,15 @@ const FunctionalDashboardPage = () => {
   });
 
   // Helper function to format project names
-  const formatProjectName = (projectKey) => {
+  const formatProjectName = (projectKey: string): string => {
     if (!projectKey || projectKey === "") return "Untitled Project";
     return projectKey
       .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
 
   // Helper function to format step names
-  const formatStepName = (stepKey) => {
+  const formatStepName = (stepKey: string): string => {
     return stepKey
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -51,15 +85,15 @@ const FunctionalDashboardPage = () => {
   };
 
   // Helper function to calculate project progress percentage
-  const calculateProgress = (completedSteps) => {
+  const calculateProgress = (completedSteps: string[]): number => {
     const estimatedTotalSteps = Math.max(completedSteps.length + 2, 7);
     return Math.min((completedSteps.length / estimatedTotalSteps) * 100, 100);
   };
 
   // Helper function to get project status
-  const getProjectStatus = (completedSteps, lastVisited) => {
+  const getProjectStatus = (completedSteps: string[], lastVisited: string): ProjectStatus => {
     const daysSinceLastVisit = Math.floor(
-      (new Date() - new Date(lastVisited)) / (1000 * 60 * 60 * 24)
+      (new Date().getTime() - new Date(lastVisited).getTime()) / (1000 * 60 * 60 * 24)
     );
 
     if (completedSteps.length === 0)
@@ -78,10 +112,10 @@ const FunctionalDashboardPage = () => {
   };
 
   // Helper function to format relative time
-  const formatRelativeTime = (dateString) => {
+  const formatRelativeTime = (dateString: string): string => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+    const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
 
     if (diffInMinutes < 1) return "Just now";
     if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
@@ -96,7 +130,7 @@ const FunctionalDashboardPage = () => {
   };
 
   // Calculate DSA statistics
-  const calculateDSAStats = (questionNumbers) => {
+  const calculateDSAStats = (questionNumbers: number[]): DSAStats => {
     if (!questionNumbers || questionNumbers.length === 0)
       return {
         totalSolved: 0,
@@ -113,117 +147,119 @@ const FunctionalDashboardPage = () => {
     return { totalSolved, uniqueProblems, recentlySolved, highestProblem };
   };
 
-  // Calculate streak data
-  const calculateStreaks = () => {
-    // Simulate streak calculation based on current date
-    const today = new Date();
-    const dayOfWeek = today.getDay();
+  // // Calculate streak data
+  // const calculateStreaks = (): StreakData => {
+  //   // Simulate streak calculation based on current date
+  //   const today = new Date();
+  //   const dayOfWeek = today.getDay();
 
-    // Simple streak simulation - in real app, this would be based on actual activity data
-    const currentStreak = Math.floor(Math.random() * 15) + 1;
-    const longestStreak = Math.max(
-      currentStreak,
-      Math.floor(Math.random() * 30) + currentStreak
-    );
-    const workedToday = Math.random() > 0.3; // 70% chance worked today
+  //   // Simple streak simulation - in real app, this would be based on actual activity data
+  //   const currentStreak = Math.floor(Math.random() * 15) + 1;
+  //   const longestStreak = Math.max(
+  //     currentStreak,
+  //     Math.floor(Math.random() * 30) + currentStreak
+  //   );
+  //   const workedToday = Math.random() > 0.3; // 70% chance worked today
 
-    return {
-      current: currentStreak,
-      longest: longestStreak,
-      today: workedToday,
-    };
-  };
+  //   return {
+  //     current: currentStreak,
+  //     longest: longestStreak,
+  //     today: workedToday,
+  //   };
+  // };
 
   useEffect(() => {
-    // Load all data from localStorage
+    // Since localStorage is not supported in this environment, we'll use mock data
     const loadAllData = () => {
       try {
-        // Load project data
-        const storedProjectData = localStorage.getItem("project-progress");
-        if (storedProjectData) {
-          const parsedData = JSON.parse(storedProjectData);
-          setProjectData(parsedData);
+        // Mock project data
+        const mockProjectData = {
+          "react-todo-app": {
+            completedSteps: ["setup-environment", "create-components", "add-styling"],
+            lastVisited: new Date().toISOString()
+          },
+          "node-api": {
+            completedSteps: ["setup-express", "create-routes"],
+            lastVisited: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+          }
+        };
+        
+        setProjectData(mockProjectData);
 
-          // Calculate project stats
-          const projects = Object.entries(parsedData).filter(
-            ([key]) => key !== ""
+        // Calculate project stats
+        const projects = Object.entries(mockProjectData).filter(
+          ([key]) => key !== ""
+        );
+        const totalProjects = projects.length;
+        const activeProjects = projects.filter(([, data]) => {
+          const daysSinceLastVisit = Math.floor(
+            (new Date().getTime() - new Date(data.lastVisited).getTime()) / (1000 * 60 * 60 * 24)
           );
-          const totalProjects = projects.length;
-          const activeProjects = projects.filter(([, data]) => {
-            const daysSinceLastVisit = Math.floor(
-              (new Date() - new Date(data.lastVisited)) / (1000 * 60 * 60 * 24)
-            );
-            return daysSinceLastVisit <= 7;
-          }).length;
-          const totalCompletedSteps = projects.reduce(
-            (sum, [, data]) => sum + data.completedSteps.length,
-            0
+          return daysSinceLastVisit <= 7;
+        }).length;
+        const totalCompletedSteps = projects.reduce(
+          (sum, [, data]) => sum + data.completedSteps.length,
+          0
+        );
+        const recentlyWorked = projects.filter(([, data]) => {
+          const daysSinceLastVisit = Math.floor(
+            (new Date().getTime() - new Date(data.lastVisited).getTime()) / (1000 * 60 * 60 * 24)
           );
-          const recentlyWorked = projects.filter(([, data]) => {
-            const daysSinceLastVisit = Math.floor(
-              (new Date() - new Date(data.lastVisited)) / (1000 * 60 * 60 * 24)
-            );
-            return daysSinceLastVisit <= 1;
-          }).length;
+          return daysSinceLastVisit <= 1;
+        }).length;
 
-          setStats({
-            totalProjects,
-            activeProjects,
-            completedSteps: totalCompletedSteps,
-            recentlyWorked,
+        setStats({
+          totalProjects,
+          activeProjects,
+          completedSteps: totalCompletedSteps,
+          recentlyWorked,
+        });
+
+        // Generate recent activity
+        const activities: ActivityItem[] = [];
+        projects.forEach(([projectKey, data]) => {
+          activities.push({
+            id: `visit-${projectKey}`,
+            type: "visit",
+            project: projectKey,
+            timestamp: data.lastVisited,
+            description: `Worked on ${formatProjectName(projectKey)}`,
           });
 
-          // Generate recent activity
-          const activities = [];
-          projects.forEach(([projectKey, data]) => {
+          data.completedSteps.forEach((step, index) => {
+            const stepTime = new Date(
+              new Date(data.lastVisited).getTime() -
+                (data.completedSteps.length - index) * 30 * 60 * 1000
+            );
             activities.push({
-              id: `visit-${projectKey}`,
-              type: "visit",
+              id: `step-${projectKey}-${step}`,
+              type: "step",
               project: projectKey,
-              timestamp: data.lastVisited,
-              description: `Worked on ${formatProjectName(projectKey)}`,
-            });
-
-            data.completedSteps.forEach((step, index) => {
-              const stepTime = new Date(
-                new Date(data.lastVisited).getTime() -
-                  (data.completedSteps.length - index) * 30 * 60 * 1000
-              );
-              activities.push({
-                id: `step-${projectKey}-${step}`,
-                type: "step",
-                project: projectKey,
-                step: step,
-                timestamp: stepTime.toISOString(),
-                description: `Completed "${formatStepName(
-                  step
-                )}" in ${formatProjectName(projectKey)}`,
-              });
+              step: step,
+              timestamp: stepTime.toISOString(),
+              description: `Completed "${formatStepName(
+                step
+              )}" in ${formatProjectName(projectKey)}`,
             });
           });
+        });
 
-          const sortedActivities = activities
-            .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-            .slice(0, 10);
+        const sortedActivities = activities
+          .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+          .slice(0, 10);
 
-          setRecentActivity(sortedActivities);
-        }
+        setRecentActivity(sortedActivities);
 
-        // Load DSA data
-        const storedDSAData = localStorage.getItem("dsa-solved");
-        if (storedDSAData) {
-          const parsedDSAData = JSON.parse(storedDSAData);
-          setDsaData(Array.isArray(parsedDSAData) ? parsedDSAData : []);
-        }
+        // Mock DSA data
+        setDsaData([1, 2, 5, 8, 13, 21, 34, 55, 89, 144]);
 
-        // Load or calculate streak data
-        // const storedStreakData = localStorage.getItem("coding-streaks");
-        // if (storedStreakData) {
-        //   setStreakData(JSON.parse(storedStreakData));
-        // } else {
-        //   const calculatedStreaks = calculateStreaks();
-        //   setStreakData(calculatedStreaks);
-        // }
+        // Mock streak data
+        setStreakData({
+          current: 7,
+          longest: 15,
+          today: true
+        });
+
       } catch (error) {
         console.error("Error loading data:", error);
       }
