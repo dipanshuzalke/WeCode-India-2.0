@@ -10,7 +10,7 @@ import ConditionalNav from "@/components/ConditionalNav"; // import it
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevPath - Software Development Roadmap for Students",
+  title: "WeCode India - Software Development Roadmap for Students",
   description:
     "A comprehensive roadmap platform for college students to learn software development from 1st to final year",
 };

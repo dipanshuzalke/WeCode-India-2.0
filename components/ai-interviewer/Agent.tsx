@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import type { AgentProps } from "@/types";
+import { LucidePhoneOff, PhoneCall } from "lucide-react";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -237,16 +238,16 @@ const Agent = ({
 
   return (
     <>
-      <div className="call-view">
+      <div className="call-view flex items-center justify-center  flex-wrap py-10 gap-4 md:gap-8 lg:gap-14">
         {/* AI Interviewer Card */}
-        <div className="card-interviewer">
+        <div className="card-interviewer border-4 bg-teal-950  border-teal-900 md:w-90 aspect-[.8] w-50 rounded-3xl flex flex-col items-center justify-center">
           <div className="avatar">
             <Image
-              src="/ai-avatar.png"
+              src="/robot.png"
               alt="profile-image"
               width={65}
               height={54}
-              className="object-cover"
+              className="object-cover size-[100px]"
             />
             {isSpeaking && <span className="animate-speak" />}
           </div>
@@ -254,10 +255,10 @@ const Agent = ({
         </div>
 
         {/* User Profile Card */}
-        <div className="card-border">
+        <div className="card-border border-4 bg-teal-950 lg border-teal-900 md:w-90 aspect-[.8] w-50 rounded-3xl flex flex-col items-center justify-center">
           <div className="card-content">
             <Image
-              src="/user-avatar.png"
+              src="/profile.png"
               alt="profile-image"
               width={539}
               height={539}
@@ -268,9 +269,9 @@ const Agent = ({
         </div>
       </div>
 
-      {messages.length > 0 && (
-        <div className="transcript-border">
-          <div className="transcript">
+      <div className="transcript-border w-full h-40 p-4 flex justify-center ">
+        <div className="transcript border-2 border-gray-600 h-full py-1 px-3 rounded-2xl bg-neutral-900  w-full max-w-[800px] text-xl">
+          {messages.length > 0 ? (
             <p
               key={lastMessage}
               className={cn(
@@ -280,13 +281,22 @@ const Agent = ({
             >
               {lastMessage}
             </p>
-          </div>
+          ) : (
+            <p>
+              No response to show! Maybe pressing that call button will do
+              something...
+            </p>
+          )}
         </div>
-      )}
+      </div>
 
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center mb-12 p-4">
         {callStatus !== "ACTIVE" ? (
-          <button className="relative btn-call" onClick={() => handleCall()}>
+          <button
+            className="relative btn-call bg-red-500 px-4 py-1 rounded-2xl text-xl flex gap-2 justify-center items-center"
+            onClick={() => handleCall()}
+          >
+            <PhoneCall />
             <span
               className={cn(
                 "absolute animate-ping rounded-full opacity-75",
@@ -301,8 +311,12 @@ const Agent = ({
             </span>
           </button>
         ) : (
-          <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End
+          <button
+            className="btn-disconnect  btn-call bg-red-500 px-4 py-1 rounded-2xl text-xl flex gap-2 justify-center items-center"
+            onClick={() => handleDisconnect()}
+          >
+            <LucidePhoneOff />
+            <span>End</span>
           </button>
         )}
       </div>
@@ -311,4 +325,3 @@ const Agent = ({
 };
 
 export default Agent;
-

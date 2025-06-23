@@ -9,13 +9,11 @@ const Page = () => {
 
   return (
     <>
-      <h3>Interview generation</h3>
+      <div className="w-full flex justify-center ">
+        <h1 className="text-2xl font-medium py-7">Interview Generation</h1>
+      </div>
 
-      <Agent
-        userName={user?.name || ""}
-        userId={user?.id}
-        type="generate"
-      />
+      <Agent userName={user?.name || ""} userId={user?.id} type="generate" />
     </>
   );
 };

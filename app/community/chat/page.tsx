@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useChatSocket } from "@/hooks/useChatSocket";
 import { useEffect, useState, useRef } from "react";
+import { Globe } from "lucide-react";
 
 type ChatMessage = {
   content: string;
@@ -53,17 +54,23 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4 space-y-4">
-      <h2 className="text-2xl font-bold">🌐 Global Chat</h2>
+    <div className="max-w-4xl mx-auto p-4 space-y-4">
+      <span className="flex items-center gap-2">
+        <Globe />
+        <h2 className="text-2xl font-bold ">Global Chat</h2>
+      </span>
 
       <div
         ref={chatBoxRef}
-        className="h-96 overflow-y-auto border rounded-lg p-4 bg-gray-100 shadow-sm"
+        className="h-[30rem] overflow-y-auto border rounded-lg p-4  shadow-sm"
       >
         {allMessages.map((msg, i) => (
-          <div key={i} className="mb-3">
-            <strong className="text-blue-600">{msg.user.name}:</strong>{" "}
-            <span className="text-black">{msg.content}</span>
+          <div
+            key={i}
+            className="mb-3 flex flex-col gap-1 bg-neutral-900 px-3 py-1 w-fit min-w-24"
+          >
+            <strong className="text-xl">{msg.user.name}:</strong>{" "}
+            <span className="font-light">{msg.content}</span>
           </div>
         ))}
       </div>
