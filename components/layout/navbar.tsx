@@ -269,7 +269,7 @@ export function NavBar() {
           <ModeToggle />
           <div className="hidden md:flex md:gap-2">
             {session ? (
-              <Button variant="destructive" onClick={() => signOut()}>
+              <Button variant="destructive" onClick={() => signOut({ callbackUrl: "/" })            }>
                 Sign Out
               </Button>
             ) : (
