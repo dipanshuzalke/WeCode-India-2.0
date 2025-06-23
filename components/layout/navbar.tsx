@@ -86,35 +86,39 @@ export function NavBar() {
         {/* Desktop */}
         <nav className="hidden md:flex md:gap-4 lg:gap-6">
           <NavigationMenu>
-            <NavigationMenuList>
-              {/* Home */}
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/"
-                    className={cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/" ? "bg-accent" : "bg-background"
-                    )}
-                  >
-                    Home
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+          <NavigationMenuList>
+  {/* Show Dashboard when logged in */}
+  {session ? (
+    <NavigationMenuItem>
+      <NavigationMenuLink asChild>
+        <Link
+          href="/dashboard"
+          className={cn(
+            "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
+            pathname === "/dashboard" ? "bg-accent" : "bg-background"
+          )}
+        >
+          Dashboard
+        </Link>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  ) : (
+    // Show Home when not logged in
+    <NavigationMenuItem>
+      <NavigationMenuLink asChild>
+        <Link
+          href="/"
+          className={cn(
+            "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
+            pathname === "/" ? "bg-accent" : "bg-background"
+          )}
+        >
+          Home
+        </Link>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  )}
 
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/dashboard"
-                    className={cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/dashboard" ? "bg-accent" : "bg-background"
-                    )}
-                  >
-                    Dashboard
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
 
               {/* Phases */}
               <NavigationMenuItem>
