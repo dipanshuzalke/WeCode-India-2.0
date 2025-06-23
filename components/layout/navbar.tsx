@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Menu, Code, BookOpen } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import AuthModal from "../pages/AuthModal";
+import { AuthModal } from "../pages/AuthModal";
 import { signOut, useSession } from "next-auth/react";
 
 export function NavBar() {
@@ -48,11 +48,7 @@ export function NavBar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] sm:w-[350px]">
-              <Link
-                href="/"
-                className="flex items-center gap-2 font-bold"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link href="/" className="flex items-center gap-2 font-bold" onClick={() => setIsOpen(false)}>
                 <Code className="h-6 w-6" />
                 <span>WeCode India</span>
               </Link>
@@ -63,9 +59,7 @@ export function NavBar() {
                     href={route.href}
                     className={cn(
                       "flex items-center gap-2 text-sm font-medium hover:text-foreground transition-colors",
-                      pathname === route.href
-                        ? "text-foreground"
-                        : "text-muted-foreground"
+                      pathname === route.href ? "text-foreground" : "text-muted-foreground"
                     )}
                     onClick={() => setIsOpen(false)}
                   >
@@ -138,50 +132,32 @@ export function NavBar() {
                             Development Roadmap
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            Follow a structured learning path from fundamentals
-                            to interview prep
+                            Follow a structured learning path from fundamentals to interview prep
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/phases/fundamentals"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
-                          <div className="text-sm font-medium">
-                            Fundamentals
-                          </div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Learn programming basics
-                          </p>
+                        <Link href="/phases/fundamentals" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium">Fundamentals</div>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Learn programming basics</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/dsa"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
+                        <Link href="/dsa" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">DSA</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Master data structures & algorithms
-                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Master data structures & algorithms</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/phases/domains"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
+                        <Link href="/phases/domains" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">Development</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Build real-world projects
-                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Build real-world projects</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
@@ -195,40 +171,25 @@ export function NavBar() {
                   <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] lg:grid-row-3">
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/community/feed"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
+                        <Link href="/community/feed" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">Feed</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Post, Connect & Engage
-                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Post, Connect & Engage</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/community/chat"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
+                        <Link href="/community/chat" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">Global Chat</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Live, open conversations
-                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Live, open conversations</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link
-                          href="/community/doubt"
-                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
-                        >
+                        <Link href="/community/doubt" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
                           <div className="text-sm font-medium">Doubt Forum</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">
-                            Solve doubts together
-                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">Solve doubts together</p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
