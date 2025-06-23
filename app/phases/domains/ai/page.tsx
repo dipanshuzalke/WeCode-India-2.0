@@ -192,6 +192,7 @@ const AIMLPage = () => {
       icon: "🔢",
     },
   ];
+  
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
