@@ -56,7 +56,6 @@ interface Props {
 export default function AuthModal({ providers }: Props) {
   return (
     <div className="modal">
-      <h2>Welcome to We Code India</h2>
 
       {providers &&
         Object.values(providers).map((provider) => (
