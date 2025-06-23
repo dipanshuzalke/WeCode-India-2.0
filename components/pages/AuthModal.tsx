@@ -50,7 +50,7 @@ import { BuiltInProviderType } from "next-auth/providers/index";
 import { signIn, type ClientSafeProvider, LiteralUnion } from "next-auth/react";
 
 interface Props {
-  providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null;
+  providers?: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null;
 }
 
 export default function AuthModal({ providers }: Props) {
