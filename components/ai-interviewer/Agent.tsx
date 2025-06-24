@@ -9,6 +9,7 @@ import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import type { AgentProps } from "@/types";
 import { LucidePhoneOff, PhoneCall } from "lucide-react";
+import Home from "./UserFace";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -257,14 +258,15 @@ const Agent = ({
         {/* User Profile Card */}
         <div className="card-border border-4 bg-teal-950 lg border-teal-900 md:w-90 aspect-[.8] w-50 rounded-3xl flex flex-col items-center justify-center">
           <div className="card-content">
-            <Image
+            {/* <Image
               src="/profile.png"
               alt="profile-image"
               width={539}
               height={539}
               className="rounded-full object-cover size-[120px]"
-            />
-            <h3>{userName}</h3>
+            /> */}
+            <Home />
+            <h3 className="pl-6">{userName}</h3>
           </div>
         </div>
       </div>

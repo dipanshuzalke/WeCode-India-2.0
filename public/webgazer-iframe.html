@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebGazer Iframe</title>
+    <script src="/webgazer.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #webgazerVideoFeed {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        window.webgazer
+          .setGazeListener(function (data) {
+            if (data) {
+              window.parent.postMessage(
+                {
+                  type: "gaze",
+                  x: data.x,
+                  y: data.y,
+                },
+                "*"
+              );
+            }
+          })
+          .begin();
+        window.webgazer.showVideo(true);
+        window.webgazer.showFaceOverlay(false);
+        window.webgazer.showFaceFeedbackBox(false);
+      });
+    </script>
+  </body>
+</html>
