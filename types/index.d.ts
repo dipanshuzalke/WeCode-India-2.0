@@ -1,3 +1,13 @@
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'pixel-canvas': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
+}
+
+export {};
+
 export interface Feedback {
   id: string;
   interviewId: string;
@@ -127,5 +137,3 @@ export interface Milestone {
   description: string;
   completed: boolean;
 }
-
-export {};
