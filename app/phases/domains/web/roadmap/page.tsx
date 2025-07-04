@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, ArrowDown, CheckCircle, BookOpen, ExternalLink, Code2, Database, Wrench, Zap, Lock, Cloud, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowDown, CheckCircle, BookOpen, ExternalLink, Code2, Database, Wrench, Lock, Cloud, ArrowLeft } from 'lucide-react';
 import { SiHtml5, SiCss3, SiJavascript, SiNpm, SiGit, SiReact } from 'react-icons/si';
 import { FaPuzzlePiece, FaProjectDiagram } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
@@ -376,7 +376,7 @@ const WebDevRoadmap = () => {
       {/* Phase Header */}
       <div className="text-center space-y-3">
         <div className="flex items-center justify-center space-x-3">
-          <Icon className="h-10 w-10 text-blue-600 dark:text-blue-400" />
+          <Icon className="h-10 w-10 -mt-12 text-blue-600 dark:text-blue-400" />
           <div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
               {title}
@@ -465,7 +465,7 @@ const WebDevRoadmap = () => {
   return (
     <div>
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-12">
+      <main className="max-w-7xl mx-auto px-6 py-12 mb-20">
         <div className="space-y-20">
           {/* Frontend Phase */}
           <PhaseSection
@@ -495,14 +495,6 @@ const WebDevRoadmap = () => {
             completedCount={backendPhase.filter(tech => completedTechs.has(tech.id)).length}
             totalCount={backendPhase.length}
           />
-
-          {/* Footer */}
-          <div className="text-center py-12">
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-medium">
-              <Zap className="h-5 w-5 mr-2" />
-              Ready to start your journey?
-            </div>
-          </div>
         </div>
       </main>
 
@@ -602,15 +594,18 @@ const WebDevRoadmap = () => {
 export default function WebDevRoadmapPage() {
   const router = useRouter();
   return (
-    <div className="relative min-h-screen">
-      <Button
-        variant="outline"
-        className="top-36 left-16 z-50 flex items-center gap-2 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 shadow"
-        onClick={() => router.push('/phases/domains/web')}
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Go Back
-      </Button>
+    <div className="min-h-screen">
+      <div className="pt-8 pl-8">
+        <Button
+          variant="outline"
+          className="flex items-center gap-2 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 shadow"
+          onClick={() => router.push('/phases/domains/web')}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Go Back
+        </Button>
+      </div>
+      {/* Main Content */}
       <WebDevRoadmap />
     </div>
   );

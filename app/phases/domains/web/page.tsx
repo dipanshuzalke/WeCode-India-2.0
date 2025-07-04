@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  Globe,
-  Code,
-  Users,
-  BookOpen,
-} from 'lucide-react'
+import { Globe, Code, Users, BookOpen } from 'lucide-react'
 import {
   SiReact,
   SiRedux,
@@ -34,29 +29,24 @@ import {
   SiScrapy,
   SiSelenium
 } from 'react-icons/si'
-import dynamic from 'next/dynamic'
-import projectsData from '@/data/projects.json';
-import { Case } from '@/components/ui/cases-with-infinite-scroll';
-import { useRouter } from 'next/navigation';
-const PixelCanvas = dynamic(
-  () => import('@/components/ui/pixel-canvas').then(mod => mod.PixelCanvas),
-  { ssr: false }
-)
+import projectsData from '@/data/projects.json'
+import { Case } from '@/components/ui/cases-with-infinite-scroll'
+import { useRouter } from 'next/navigation'
 
 type Project = {
-  id: string;
-  title: string;
-  summary: string;
-  domain: string;
+  id: string
+  title: string
+  summary: string
+  domain: string
   // Add other fields as needed
-};
+}
 
 const webDevProjects = (projectsData as Project[]).filter(
-  (project) => project.domain === 'Web Development'
-);
+  project => project.domain === 'Web Development'
+)
 
 const WebDevelopmentPage = () => {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-gray-900 dark:via-black dark:to-blue-900'>
       {/* Header */}
@@ -107,24 +97,17 @@ const WebDevelopmentPage = () => {
       </div>
 
       <div className='space-y-8 max-w-7xl mx-auto py-20'>
-      <h2 className="text-xl  md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left">
-            Technologies you will learn
-          </h2>
+        <h2 className='text-xl  md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left'>
+          Technologies you will learn
+        </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
           {/* Frontend Technologies */}
-          <div className='bg-gray-100 dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700'>
+          <div className='w-full h-90 rounded-xl p-6 bg-gray-100 dark:bg-gray-900 border-3 dark:border-purple-900 z-10 flex flex-col'>
             <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
               Frontend
             </h3>
             <div className='flex flex-wrap gap-3'>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiReact className='w-5 h-5 text-blue-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -133,13 +116,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiRedux className='w-5 h-5 text-purple-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -148,13 +124,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiReactquery className='w-5 h-5 text-pink-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -163,13 +132,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiNextdotjs className='w-5 h-5 text-white' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -178,13 +140,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiHtml5 className='w-5 h-5 text-orange-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -193,13 +148,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiCss3 className='w-5 h-5 text-blue-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -208,13 +156,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiJavascript className='w-5 h-5 text-yellow-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -223,13 +164,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiBootstrap className='w-5 h-5 text-purple-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -238,13 +172,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiTailwindcss className='w-5 h-5 text-cyan-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -253,13 +180,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiReact className='w-5 h-5 text-blue-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -268,13 +188,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiFigma className='w-5 h-5 text-pink-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -285,19 +198,12 @@ const WebDevelopmentPage = () => {
             </div>
           </div>
           {/* Backend Technologies */}
-          <div className='bg-gray-100 dark:bg-gray-900 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700'>
+          <div className='bg-gray-100 dark:bg-gray-900 rounded-xl p-6 shadow-sm border-gray-200 border-3 dark:border-purple-900'>
             <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
               Backend
             </h3>
             <div className='flex flex-wrap gap-3'>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiNodedotjs className='w-5 h-5 text-green-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -306,13 +212,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiExpress className='w-5 h-5 text-gray-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -321,13 +220,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiPython className='w-5 h-5 text-blue-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -336,13 +228,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiDjango className='w-5 h-5 text-green-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -351,13 +236,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiFastapi className='w-5 h-5 text-green-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -366,13 +244,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiDotnet className='w-5 h-5 text-purple-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -381,13 +252,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiMysql className='w-5 h-5 text-blue-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -396,13 +260,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiMongodb className='w-5 h-5 text-green-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -411,13 +268,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiFirebase className='w-5 h-5 text-yellow-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -426,13 +276,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiRedis className='w-5 h-5 text-red-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -441,13 +284,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiPostgresql className='w-5 h-5 text-blue-400' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -456,13 +292,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiTensorflow className='w-5 h-5 text-orange-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -471,13 +300,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiRabbitmq className='w-5 h-5 text-orange-200' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -486,13 +308,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiCelery className='w-5 h-5 text-green-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -501,13 +316,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiScrapy className='w-5 h-5 text-yellow-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
@@ -516,13 +324,6 @@ const WebDevelopmentPage = () => {
                 </div>
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
-                <PixelCanvas
-                  gap={10}
-                  speed={25}
-                  colors={['#e0f2fe', '#7dd3fc', '#0ea5e9']}
-                  variant='icon'
-                  style={{ zIndex: 0 }}
-                />
                 <div className='relative z-10 flex items-center space-x-2'>
                   <SiSelenium className='w-5 h-5 text-red-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
