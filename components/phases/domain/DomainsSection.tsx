@@ -22,14 +22,18 @@ const DomainsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10">
           {domains.map((domain, index) => (
             <DomainCard
               key={index}
               domain={domain}
               index={index}
               isInView={isDomainsInView}
-              onClick={() => router.push(domain.path)}
+              onClick={() => {
+                if (domain.available) {
+                  router.push(domain.path)
+                }
+              }}
             />
           ))}
         </div>

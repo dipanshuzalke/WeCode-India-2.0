@@ -16,6 +16,7 @@ export const domains = [
     resources: 87,
     color: "from-blue-500 to-cyan-500",
     path: "/phases/domains/web",
+    available: true
   },
   {
     icon: Smartphone,
@@ -25,6 +26,7 @@ export const domains = [
     resources: 65,
     color: "from-green-500 to-emerald-500",
     path: "/phases/domains/mobile",
+    available: false
   },
   {
     icon: Brain,
@@ -34,6 +36,7 @@ export const domains = [
     resources: 73,
     color: "from-purple-500 to-violet-500",
     path: "/phases/domains/ai",
+    available: false
   },
   {
     icon: Database,
@@ -43,6 +46,7 @@ export const domains = [
     resources: 59,
     color: "from-amber-500 to-orange-500",
     path: "/phases/domains/backend",
+    available: false
   },
   {
     icon: Shield,
@@ -52,6 +56,7 @@ export const domains = [
     resources: 52,
     color: "from-red-500 to-rose-500",
     path: "/phases/domains/security",
+    available: false
   },
   {
     icon: Cloud,
@@ -61,5 +66,6 @@ export const domains = [
     resources: 48,
     color: "from-sky-500 to-indigo-500",
     path: "/phases/domains/cloud",
+    available: false
   },
 ];

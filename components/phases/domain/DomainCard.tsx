@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 
 type Domain = {
   color: string;
@@ -9,6 +9,7 @@ type Domain = {
   description: string;
   projects: number;
   resources: number;
+  available?: boolean;
 };
 
 const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; index: number; isInView: boolean; onClick: () => void }) => {
@@ -20,7 +21,7 @@ const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; inde
       className="group cursor-pointer"
       onClick={onClick}
     >
-      <div className="relative h-full bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border border-border/50 rounded-3xl p-6 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 group-hover:scale-105 overflow-hidden">
+      <div className="relative h-full bg-gradient-to-br from-card to-card/80 backdrop-blur-sm border border-border/50 rounded-3xl p-6 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -64,12 +65,12 @@ const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; inde
           <div className="space-y-2">
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>Progress</span>
-              <span>{Math.round((domain.projects / 50) * 100)}%</span>
+              <span>{domain.available ? Math.round((domain.projects / 50) * 100) : 0}%</span>
             </div>
             <div className="w-full bg-muted/30 rounded-full h-2">
               <div
                 className={`h-2 bg-gradient-to-r ${domain.color} rounded-full transition-all duration-500`}
-                style={{ width: `${(domain.projects / 50) * 100}%` }}
+                style={{ width: domain.available ? `${(domain.projects / 50) * 100}%` : '0%' }}
               />
             </div>
           </div>
@@ -78,13 +79,13 @@ const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; inde
           <div className="grid grid-cols-2 gap-4 pt-2">
             <div className="text-center p-3 rounded-xl bg-muted/20 backdrop-blur-sm">
               <div className="text-lg font-bold text-foreground">
-                {domain.projects}
+                {domain.available ? domain.projects : 0}
               </div>
               <div className="text-xs text-muted-foreground">Projects</div>
             </div>
             <div className="text-center p-3 rounded-xl bg-muted/20 backdrop-blur-sm">
               <div className="text-lg font-bold text-foreground">
-                {domain.resources}
+                {domain.available ? domain.resources : 0}
               </div>
               <div className="text-xs text-muted-foreground">Resources</div>
             </div>
@@ -94,16 +95,24 @@ const DomainCard = ({ domain, index, isInView, onClick }: { domain: Domain; inde
           <div className="flex items-center justify-between pt-4 border-t border-border/30">
             <div className="flex items-center space-x-2">
               <div
-                className={`w-3 h-3 rounded-full bg-gradient-to-r ${domain.color} animate-pulse`}
+                className={`w-3 h-3 rounded-full ${
+                  domain.available
+                    ? `bg-gradient-to-r ${domain.color} animate-pulse`
+                    : 'bg-gray-400'
+                }`}
               ></div>
-              <span className="text-sm font-medium text-muted-foreground">
-                Available
+              <span className={`text-sm font-medium ${domain.available ? 'text-muted-foreground' : 'text-gray-400'}`}>
+                {domain.available ? 'Available' : 'Coming Soon'}
               </span>
             </div>
-            <div className="flex items-center text-primary font-medium group-hover:text-primary/80 transition-colors">
-              <span className="text-sm">Explore</span>
-              <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </div>
+            {domain.available ? (
+              <div className="flex items-center text-primary font-medium group-hover:text-primary/80 transition-colors">
+                <span className="text-sm">Explore</span>
+                <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            ) : (
+              <Lock className="h-5 w-5 text-gray-400" />
+            )}
           </div>
         </div>
 
