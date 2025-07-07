@@ -118,7 +118,7 @@ export interface LanguageOption {
 
 export interface Resource {
   id: number;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
   topics: string[];
@@ -130,6 +130,35 @@ export interface Resource {
     type: string;
     url: string;
   }[];
+  detailedContent?: {
+    overview: string;
+    learningObjectives: string[];
+    weeklyBreakdown: Array<{
+      week: number;
+      title: string;
+      description: string;
+      tasks: string[];
+      deliverables: string[];
+    }>;
+    projects: Array<{
+      name: string;
+      description: string;
+      difficulty: string;
+      estimatedTime: string;
+      technologies: string[];
+    }>;
+    resources: Array<{
+      type: string;
+      title: string;
+      description: string;
+      url?: string;
+      duration?: string;
+    }>;
+    prerequisites: string[];
+    whatYoullBuild: string[];
+    skills: string[];
+    nextSteps: string[];
+  };
 }
 
 export interface Milestone {

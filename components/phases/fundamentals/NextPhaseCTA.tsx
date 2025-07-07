@@ -4,11 +4,11 @@ import { ArrowRight } from "lucide-react";
 const NextPhaseCTA: React.FC = () => {
   return (
     <section>
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border rounded-xl p-8 text-center">
-        <h2 className="text-3xl font-bold mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           Ready for the Next Challenge?
         </h2>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto dark:text-gray-300">
           Once you&apos;ve mastered the fundamentals, it&apos;s time to dive into Data
           Structures and Algorithms to strengthen your problem-solving
           skills and prepare for technical interviews.

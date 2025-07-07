@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Resource } from "@/types";
 import ResourceCard from "./ResourceCard";
 
 interface LearningResourcesProps {
   resources: Resource[];
-  viewMode: "grid" | "list";
-  onViewModeChange: (mode: "grid" | "list") => void;
 }
 
 const LearningResources: React.FC<LearningResourcesProps> = ({ resources }) => {
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+
+  const toggleCardExpansion = (id: number) => {
+    const newExpandedCards = new Set(expandedCards);
+    if (newExpandedCards.has(id)) {
+      newExpandedCards.delete(id);
+    } else {
+      newExpandedCards.add(id);
+    }
+    setExpandedCards(newExpandedCards);
+  };
+
+  const handleExplore = (resource: Resource) => {
+    // Handle explore action - you can add navigation or modal logic here
+    console.log("Explore resource:", resource.title);
+  };
+
   return (
     <section>
       <div className="mb-8">
@@ -20,7 +35,13 @@ const LearningResources: React.FC<LearningResourcesProps> = ({ resources }) => {
 
       <div className={"grid lg:grid-cols-2 gap-6"}>
         {resources.map((resource) => (
-          <ResourceCard key={resource.id} resource={resource} />
+          <ResourceCard 
+            key={resource.id} 
+            resource={resource}
+            isExpanded={expandedCards.has(resource.id)}
+            onToggleExpand={() => toggleCardExpansion(resource.id)}
+            onExplore={() => handleExplore(resource)}
+          />
         ))}
       </div>
     </section>

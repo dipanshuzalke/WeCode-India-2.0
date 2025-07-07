@@ -4,23 +4,7 @@ import {
   Terminal,
   Brain,
 } from "lucide-react";
-import type { LanguageOption, Milestone } from "@/types";
-
-export interface Resource {
-  id: number;
-  icon: any;
-  title: string;
-  description: string;
-  topics: string[];
-  duration: string;
-  difficulty: string;
-  status: 'completed' | 'in-progress' | 'not-started';
-  resources: {
-    name: string;
-    type: string;
-    url: string;
-  }[];
-}
+import type { LanguageOption, Resource } from "@/types";
 
 export const resources: Resource[] = [
   {
@@ -29,93 +13,79 @@ export const resources: Resource[] = [
     title: "Programming Basics",
     description: "Master the fundamental concepts of programming",
     topics: [
-      "Variables and Data Types",
-      "Control Structures (if/else, loops)",
-      "Functions and Methods",
-      "Object-Oriented Programming",
-      "Error Handling",
+      "Learn basic programming concepts: variables, data types, loops, and conditionals.",
+      "Practise daily coding problems.",
+      "Write simple programs like a calculator or number guessing game.",
+      "Create 2 begineer projects."
     ],
     duration: "4-6 weeks",
     difficulty: "Beginner",
     status: "completed",
-    resources: [
-      { name: "FreeCodeCamp", type: "Interactive", url: "#" },
-      { name: "Codecademy", type: "Course", url: "#" },
-      { name: "Python.org Tutorial", type: "Documentation", url: "#" },
-    ],
+    resources: [],
   },
   {
     id: 2,
     icon: GitBranch,
-    title: "Git & GitHub",
-    description: "Learn version control for collaborative development",
+    title: "Github & Linkedin Setup",
+    description: "Learn how to setup professional profile page.",
     topics: [
-      "Git Basics (init, add, commit, push)",
-      "Branching and Merging",
-      "GitHub Workflow",
-      "Pull Requests and Code Review",
-      "Collaborative Development",
+      "Setup Github & Linkedin profiles.",
+      "Post a begineer project to github and connect with peers.",
+      "Learn git basics: version control, commits, branches & pull requests."
     ],
     duration: "2-3 weeks",
     difficulty: "Beginner",
     status: "completed",
-    resources: [
-      { name: "Git Documentation", type: "Official Docs", url: "#" },
-      { name: "GitHub Skills", type: "Interactive", url: "#" },
-      { name: "Atlassian Git Tutorial", type: "Tutorial", url: "#" },
-    ],
+    resources: [],
   },
   {
     id: 3,
     icon: Brain,
-    title: "Problem Solving",
+    title: "Introduction to DSA",
     description: "Develop analytical thinking and debugging skills",
     topics: [
-      "Breaking Down Complex Problems",
-      "Pseudocode and Flowcharts",
-      "Debugging Techniques",
-      "Code Organization",
-      "Best Practices",
+      "Study arrays, linked lists, stacks, and queues.",
+      "Practise solving begineer-level problems.",
+      "Work on baisc project (eg-task tacker).",
+      "Solve 20 DSA problems.",
+      "Build 1 DSA related project.",
     ],
-    duration: "Ongoing",
+    duration: "3-4 weeks",
     difficulty: "Beginner to Intermediate",
-    status: "in-progress",
-    resources: [
-      { name: "HackerRank", type: "Practice", url: "#" },
-      { name: "LeetCode Easy", type: "Practice", url: "#" },
-      { name: "Codewars", type: "Challenges", url: "#" },
-    ],
+    status: "completed",
+    resources: [],
   },
   {
     id: 4,
     icon: Terminal,
-    title: "Development Environment",
-    description: "Set up your coding workspace and tools",
+    title: "Web Development Basics",
+    description: "Learn about basic web development technologies.",
     topics: [
-      "Code Editors (VS Code, IDEs)",
-      "Command Line Basics",
-      "Package Managers",
-      "Development Tools",
-      "Productivity Extensions",
+      "Learn HTML, CSS, Javascript.",
+      "Create 2 responsive web pages.",
+      "Start a professional portfolio website showcasing your skills and deploy too",
     ],
-    duration: "1-2 weeks",
+    duration: "3-4 weeks",
     difficulty: "Beginner",
-    status: "not-started",
-    resources: [
-      { name: "VS Code Documentation", type: "Official", url: "#" },
-      { name: "Command Line Tutorial", type: "Interactive", url: "#" },
-      { name: "npm Documentation", type: "Package Manager", url: "#" },
-    ],
+    status: "completed",
+    resources: [],
   },
 ];
 
-export const languageOptions: LanguageOption[] = [
+export const fundamentalLanguages: LanguageOption[] = [
+  {
+    name: "C",
+    description: "A foundational language for system programming and high-performance applications.",
+    pros: ["Fast", "Portable", "Widely used in OS and embedded systems"],
+    icon: "🌐",
+    popularity: "98%",
+  },
   {
     name: "Python",
-    description: "Beginner-friendly with clean syntax",
-    pros: ["Easy to learn", "Versatile", "Great community"],
+    description: "Beginner-friendly, versatile, and widely used in data science and web development.",
+    pros: ["Easy syntax", "Great libraries", "Popular for DSA"],
     icon: "🐍",
-    popularity: "95%",
+    popularity: "99%",
   },
   {
     name: "JavaScript",
@@ -124,6 +94,9 @@ export const languageOptions: LanguageOption[] = [
     icon: "🌐",
     popularity: "98%",
   },
+];
+
+export const dsaLanguages: LanguageOption[] = [
   {
     name: "Java",
     description: "Enterprise-ready and structured",
@@ -137,35 +110,5 @@ export const languageOptions: LanguageOption[] = [
     pros: ["Fast execution", "System programming", "Game development"],
     icon: "⚡",
     popularity: "72%",
-  },
+  }
 ];
-
-export const milestones: Milestone[] = [
-  {
-    title: "Complete First Program",
-    description: "Write and run your first 'Hello World' program",
-    completed: true,
-  },
-  {
-    title: "Understand Variables",
-    description: "Work with different data types and variables",
-    completed: true,
-  },
-  {
-    title: "Master Control Flow",
-    description: "Use if statements, loops, and functions effectively",
-    completed: true,
-  },
-  {
-    title: "Git Repository Setup",
-    description: "Create your first Git repository and make commits",
-    completed: false,
-  },
-  {
-    title: "Solve Practice Problems",
-    description: "Complete 10 basic programming challenges",
-    completed: false,
-  },
-];
-
-export {};
