@@ -22,13 +22,7 @@ export default function CommunityPage() {
             className="p-4.5 bg-white dark:bg-neutral-800 border rounded-xl flex items-center gap-4 cursor-pointer"
             onClick={() => setShowCreatePost(true)}
           >
-            <Image
-              src={session.user?.image ?? "/default-avatar.png"}
-              alt="Profile"
-              width={35}
-              height={35}
-              className="rounded-full"
-            />
+           <img src={session.user.image ?? ""} alt="Profile" />
             <div className="h-10 border rounded-full flex items-center px-4 text-zinc-500 w-full">
               What do you want to ask or share?
             </div>

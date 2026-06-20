@@ -19,10 +19,10 @@ const getButtonText = (title: string): string => {
 
 export const PhaseTimelineItem = ({ phase }: PhaseTimelineItemProps) => {
   const IconComponent = phase.icon;
-  const isLocked = phase.isLocked;
-  const borderClass = isLocked ? "border-muted" : "border-primary";
-  const iconColor = isLocked ? "text-muted-foreground" : "text-primary";
-  const titleColor = isLocked ? "text-muted-foreground" : "";
+  // const isLocked = phase.isLocked;
+  const borderClass = "border-primary";
+  const iconColor =  "text-primary";
+  const titleColor = "";
   
   return (
     <div className="group relative">
@@ -39,8 +39,8 @@ export const PhaseTimelineItem = ({ phase }: PhaseTimelineItemProps) => {
           <p className="text-muted-foreground">
             {phase.description}
           </p>
-          <PhaseProgress progress={phase.progress} isLocked={isLocked} />
-          <LearningPoints points={phase.learningPoints} isLocked={isLocked} />
+          <PhaseProgress progress={phase.progress}  />
+          <LearningPoints points={phase.learningPoints} />
           <Button asChild>
             <Link href={phase.href}>
               {getButtonText(phase.title)}

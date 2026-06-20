@@ -17,9 +17,9 @@ function generateMockActivityData() {
     // Randomize some activity (denser at end for demo current streak)
     let easy = 0, medium = 0, hard = 0;
     if ((i > 300 && i % 6 !== 0) || (i > 355 && Math.random() > 0.2)) {
-      easy = Math.floor(Math.random() * 3); // 0-2
-      medium = Math.random() > 0.8 ? 1 : 0;
-      hard = Math.random() > 0.95 ? 1 : 0;
+      easy = 0
+      medium = 0
+      hard = 0
     }
     arr.push({ date: iso, easy, medium, hard });
   }

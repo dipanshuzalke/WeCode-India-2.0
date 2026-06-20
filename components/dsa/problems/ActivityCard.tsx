@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/tooltip";
 
 // Dummy totals (should be equal to sum in your real data)
-const TOTALS = { Easy: 209, Medium: 651, Hard: 366 };
+const TOTALS = { Easy: 0, Medium: 0, Hard: 0 };
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function getRecentActivity() {
@@ -32,9 +32,9 @@ function getRecentActivity() {
 
 function getSolvedTotals() {
   return {
-    Easy: 39,
-    Medium: 143,
-    Hard: 21,
+    Easy: 0,
+    Medium: 0,
+    Hard: 0,
   };
 }
 

@@ -29,7 +29,7 @@ export function NavBar() {
     { href: "/phases", label: "Phases" },
     { href: "/roadmap", label: "AI Roadmap" },
     { href: "/assistant", label: "AI Assistant" },
-    { href: "/dashboard", label: "Dashboard" },
+    // { href: "/dashboard", label: "Dashboard" },
     { href: "/community", label: "Community" },
     { href: "/dsa", label: "DSA" },
     { href: "/projects", label: "Projects" },
@@ -48,7 +48,11 @@ export function NavBar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] sm:w-[350px]">
-              <Link href="/" className="flex items-center gap-2 font-bold" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/"
+                className="flex items-center gap-2 font-bold"
+                onClick={() => setIsOpen(true)}
+              >
                 <Code className="h-6 w-6" />
                 <span>WeCode India</span>
               </Link>
@@ -59,7 +63,9 @@ export function NavBar() {
                     href={route.href}
                     className={cn(
                       "flex items-center gap-2 text-sm font-medium hover:text-foreground transition-colors",
-                      pathname === route.href ? "text-foreground" : "text-muted-foreground"
+                      pathname === route.href
+                        ? "text-foreground"
+                        : "text-muted-foreground",
                     )}
                     onClick={() => setIsOpen(false)}
                   >
@@ -86,40 +92,20 @@ export function NavBar() {
         {/* Desktop */}
         <nav className="hidden md:flex md:gap-4 lg:gap-6">
           <NavigationMenu>
-          <NavigationMenuList>
-  {/* Show Dashboard when logged in */}
-  {session ? (
-    <NavigationMenuItem>
-      <NavigationMenuLink asChild>
-        <Link
-          href="/dashboard"
-          className={cn(
-            "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-            pathname === "/dashboard" ? "bg-accent" : "bg-background"
-          )}
-        >
-          Dashboard
-        </Link>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-  ) : (
-    // Show Home when not logged in
-    <NavigationMenuItem>
-      <NavigationMenuLink asChild>
-        <Link
-          href="/"
-          className={cn(
-            "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-            pathname === "/" ? "bg-accent" : "bg-background"
-          )}
-        >
-          Home
-        </Link>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-  )}
-
-
+            <NavigationMenuList>
+              {/* <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/"
+                    className={cn(
+                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
+                      pathname === "/" ? "bg-accent" : "bg-background",
+                    )}
+                  >
+                    Home
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem> */}
               {/* Phases */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Phases</NavigationMenuTrigger>
@@ -136,71 +122,102 @@ export function NavBar() {
                             Development Roadmap
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            Follow a structured learning path from fundamentals to interview prep
+                            Follow a structured learning path from fundamentals
+                            to interview prep
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/phases/fundamentals" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
-                          <div className="text-sm font-medium">Fundamentals</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Learn programming basics</p>
+                        <Link
+                          href="/phases/fundamentals"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium">
+                            Fundamentals
+                          </div>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Learn programming basics
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/dsa" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link
+                          href="/dsa"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
                           <div className="text-sm font-medium">DSA</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Master data structures & algorithms</p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Master data structures & algorithms
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/phases/domains" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link
+                          href="/phases/domains"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
                           <div className="text-sm font-medium">Development</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Build real-world projects</p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Build real-world projects
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Community</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] lg:grid-row-3">
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/community/feed" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link
+                          href="/community/feed"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
                           <div className="text-sm font-medium">Feed</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Post, Connect & Engage</p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Post, Connect & Engage
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/community/chat" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link
+                          href="/community/chat"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
                           <div className="text-sm font-medium">Global Chat</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Live, open conversations</p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Live, open conversations
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link href="/community/doubt" className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground">
+                        <Link
+                          href="/community/doubt"
+                          className="block p-3 rounded-md no-underline outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
                           <div className="text-sm font-medium">Doubt Forum</div>
-                          <p className="text-sm text-muted-foreground line-clamp-2">Solve doubts together</p>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            Solve doubts together
+                          </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               {/* DSA */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
@@ -208,14 +225,13 @@ export function NavBar() {
                     href="/dsa"
                     className={cn(
                       "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/dsa" ? "bg-accent" : "bg-background"
+                      pathname === "/dsa" ? "bg-accent" : "bg-background",
                     )}
                   >
                     DSA
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-
               {/* Projects */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
@@ -223,14 +239,13 @@ export function NavBar() {
                     href="/projects"
                     className={cn(
                       "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/projects" ? "bg-accent" : "bg-background"
+                      pathname === "/projects" ? "bg-accent" : "bg-background",
                     )}
                   >
                     Projects
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-
               {/* AI Roadmap */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
@@ -238,14 +253,13 @@ export function NavBar() {
                     href="/roadmap"
                     className={cn(
                       "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/roadmap" ? "bg-accent" : "bg-background"
+                      pathname === "/roadmap" ? "bg-accent" : "bg-background",
                     )}
                   >
                     AI Roadmap
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-
               {/* AI Assistant */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
@@ -253,21 +267,22 @@ export function NavBar() {
                     href="/assistant"
                     className={cn(
                       "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/assistant" ? "bg-accent" : "bg-background"
+                      pathname === "/assistant" ? "bg-accent" : "bg-background",
                     )}
                   >
                     AI Assistant
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
                     href="/pdf-summarizer"
                     className={cn(
                       "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent",
-                      pathname === "/pdf-summarizer" ? "bg-accent" : "bg-background"
+                      pathname === "/pdf-summarizer"
+                        ? "bg-accent"
+                        : "bg-background",
                     )}
                   >
                     pdf summarizer
@@ -283,7 +298,10 @@ export function NavBar() {
           <ModeToggle />
           <div className="hidden md:flex md:gap-2">
             {session ? (
-              <Button variant="destructive" onClick={() => signOut({ callbackUrl: "/" })            }>
+              <Button
+                variant="destructive"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
                 Sign Out
               </Button>
             ) : (

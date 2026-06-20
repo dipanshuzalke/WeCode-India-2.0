@@ -12,7 +12,7 @@ export const phases: Phase[] = [
     id: 1,
     title: "Phase 1: Fundamentals",
     description: "Start with the basics of programming, covering languages, tools, and core concepts. This phase establishes a solid foundation for your software development journey.",
-    progress: 100,
+    progress: 0,
     icon: BookOpen,
     href: "/phases/fundamentals",
     learningPoints: [
@@ -47,7 +47,7 @@ export const phases: Phase[] = [
     id: 2,
     title: "Phase 2: Data Structures & Algorithms",
     description: "Master DSA concepts essential for problem-solving and technical interviews. This phase will sharpen your analytical thinking and coding skills.",
-    progress: 42,
+    progress: 0,
     icon: Code,
     href: "/dsa",
     learningPoints: [

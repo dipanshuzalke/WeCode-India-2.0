@@ -16,13 +16,13 @@ interface PhaseCardProps {
 }
 
 export const PhaseCard = ({ phase }: PhaseCardProps) => {
-  const cardClasses = phase.isLocked ? "w-full max-w-md bg-muted/50" : "w-full max-w-md";
-  const contentClasses = phase.isLocked ? "grid gap-4 opacity-50" : "grid gap-4";
+  const cardClasses = "w-full max-w-md";
+  const contentClasses = "grid gap-4";
   
   return (
     <Card className={cardClasses}>
       <CardHeader>
-        <CardTitle className={phase.isLocked ? "text-muted-foreground" : ""}>
+        <CardTitle className={""}>
           {phase.cardTitle}
         </CardTitle>
         <CardDescription>
@@ -31,7 +31,7 @@ export const PhaseCard = ({ phase }: PhaseCardProps) => {
       </CardHeader>
       <CardContent className={contentClasses}>
         {phase.cardItems.map((item, index) => (
-          <PhaseCardItem key={index} item={item} isLocked={phase.isLocked} />
+          <PhaseCardItem key={index} item={item} />
         ))}
       </CardContent>
       <CardFooter>

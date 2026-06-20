@@ -9,10 +9,10 @@ export default function ProgressPage() {
       {/* Overall Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Problems Solved", value: "142" },
-          { label: "Current Streak", value: "23 Days" },
-          { label: "Topics Completed", value: "6/12" },
-          { label: "Time Invested", value: "142 hrs" },
+          { label: "Problems Solved", value: "0" },
+          { label: "Current Streak", value: "0 Days" },
+          { label: "Topics Completed", value: "0/12" },
+          { label: "Time Invested", value: "0 hrs" },
         ].map((stat, idx) => (
           <div
             key={idx}
@@ -40,13 +40,13 @@ export default function ProgressPage() {
           </h4>
           <div className="flex items-end gap-2 h-32">
             {[
-              { day: "Mon", count: 3, height: "60%" },
-              { day: "Tue", count: 5, height: "100%" },
-              { day: "Wed", count: 2, height: "40%" },
-              { day: "Thu", count: 4, height: "80%" },
-              { day: "Fri", count: 6, height: "120%" },
-              { day: "Sat", count: 1, height: "20%" },
-              { day: "Sun", count: 3, height: "60%" },
+              { day: "Mon", count: 3, height: "0%" },
+              { day: "Tue", count: 5, height: "0%" },
+              { day: "Wed", count: 2, height: "0%" },
+              { day: "Thu", count: 4, height: "0%" },
+              { day: "Fri", count: 6, height: "0%" },
+              { day: "Sat", count: 1, height: "0%" },
+              { day: "Sun", count: 3, height: "0%" },
             ].map((day, i) => (
               <div key={i} className="flex-1 flex flex-col items-center">
                 <div
@@ -76,10 +76,10 @@ export default function ProgressPage() {
           </h4>
           <div className="space-y-3">
             {[
-              { category: "Array & String", solved: 45, total: 60, percentage: 75 },
-              { category: "Tree & Graph", solved: 32, total: 50, percentage: 64 },
-              { category: "Dynamic Programming", solved: 18, total: 40, percentage: 45 },
-              { category: "Sorting & Searching", solved: 28, total: 35, percentage: 80 },
+              { category: "Array & String", solved: 0, total: 60, percentage: 0 },
+              { category: "Tree & Graph", solved: 0, total: 50, percentage: 0 },
+              { category: "Dynamic Programming", solved: 0, total: 40, percentage: 0 },
+              { category: "Sorting & Searching", solved: 0, total: 35, percentage: 0 },
             ].map((cat, i) => (
               <div key={i} className="flex items-center justify-between">
                 <div className="flex-1">
@@ -112,10 +112,10 @@ export default function ProgressPage() {
           </h3>
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              23 Days
+              0 Days
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Longest streak: 45 days
+              Longest streak: 0 days
             </p>
           </div>
         </div>
@@ -126,8 +126,8 @@ export default function ProgressPage() {
           </h3>
           <div className="space-y-3">
             {[
-              { title: "100 Problems Solved", date: "Last week", completed: true },
-              { title: "First Hard Problem", date: "2 weeks ago", completed: true },
+              { title: "100 Problems Solved", date: "Last week", completed: false },
+              { title: "First Hard Problem", date: "2 weeks ago", completed: false },
               { title: "30-Day Streak", date: "In progress", completed: false },
               { title: "All Easy Problems", date: "Next milestone", completed: false },
             ].map((m, i) => (
