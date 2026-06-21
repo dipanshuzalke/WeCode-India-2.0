@@ -13,6 +13,7 @@ import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
 import { useSession } from "next-auth/react";
 import CommentsPopup from "./CommentsPopup";
 import LikesPopup from "./LikesPopup";
+import Image from "next/image";
 
 type Post = {
   id: string;
@@ -106,7 +107,7 @@ function PostsFeed() {
               <div className="mt-3 space-y-2">
                 {post.media.map((item, idx) => (
                   <div key={idx} className="w-full">
-                    <img
+                    <Image
                       src={item.url}
                       alt={`media-${idx}`}
                       width={50}

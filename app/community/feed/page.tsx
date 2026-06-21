@@ -4,6 +4,7 @@ import NewPostPopup from "@/components/community/NewPostPopup";
 import PostsFeed from "@/components/community/PostsFeed";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function CommunityPage() {
   const { data: session } = useSession();
@@ -21,7 +22,7 @@ export default function CommunityPage() {
             className="p-4.5 bg-white dark:bg-neutral-800 border rounded-xl flex items-center gap-4 cursor-pointer"
             onClick={() => setShowCreatePost(true)}
           >
-           <img src={session.user.image ?? ""} alt="Profile" />
+           <Image src={session.user.image ?? ""} alt="Profile" />
             <div className="h-10 border rounded-full flex items-center px-4 text-zinc-500 w-full">
               What do you want to ask or share?
             </div>
