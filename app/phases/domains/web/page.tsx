@@ -7,7 +7,6 @@ import {
   SiReactquery,
   SiNextdotjs,
   SiHtml5,
-  SiCss3,
   SiJavascript,
   SiBootstrap,
   SiTailwindcss,
@@ -27,7 +26,8 @@ import {
   SiRabbitmq,
   SiCelery,
   SiScrapy,
-  SiSelenium
+  SiSelenium,
+  SiCss
 } from 'react-icons/si'
 import projectsData from '@/data/projects.json'
 import { Case } from '@/components/ui/cases-with-infinite-scroll'
@@ -149,7 +149,7 @@ const WebDevelopmentPage = () => {
               </div>
               <div className='relative w-32 h-12 flex items-center justify-center rounded-full overflow-hidden border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow'>
                 <div className='relative z-10 flex items-center space-x-2'>
-                  <SiCss3 className='w-5 h-5 text-blue-300' />
+                  <SiCss className='w-5 h-5 text-blue-300' />
                   <span className='font-medium text-sm text-gray-900 dark:text-white'>
                     CSS
                   </span>
