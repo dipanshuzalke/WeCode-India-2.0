@@ -9,7 +9,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import Image from "next/image";
 import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
 import { useSession } from "next-auth/react";
 import CommentsPopup from "./CommentsPopup";
@@ -107,12 +106,12 @@ function PostsFeed() {
               <div className="mt-3 space-y-2">
                 {post.media.map((item, idx) => (
                   <div key={idx} className="w-full">
-                    <Image
+                    <img
                       src={item.url}
                       alt={`media-${idx}`}
-                      width={800}
-                      height={0}
-                      className="w-full h-auto rounded-md"
+                      width={50}
+                      height={50}
+                      className="w-full h-auto rounded-2xl"
                     />
                   </div>
                 ))}

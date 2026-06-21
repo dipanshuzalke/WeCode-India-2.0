@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import RightPannel from "@/components/community/RightPannel";
 import NewPostPopup from "@/components/community/NewPostPopup";
 import PostsFeed from "@/components/community/PostsFeed";
