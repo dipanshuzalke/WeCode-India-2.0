@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowRight, ArrowDown, CheckCircle, BookOpen, ExternalLink, Code2, Database, Wrench, Lock, Cloud, ArrowLeft } from 'lucide-react';
-import { SiHtml5, SiCss3, SiJavascript, SiNpm, SiGit, SiReact } from 'react-icons/si';
+import { SiHtml5, SiCss, SiJavascript, SiNpm, SiGit, SiReact } from 'react-icons/si';
 import { FaPuzzlePiece, FaProjectDiagram } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 
@@ -93,7 +93,7 @@ const WebDevRoadmap = () => {
       id: 'css',
       step: 2,
       name: 'Learn CSS',
-      icon: <SiCss3 className="h-8 w-8 text-blue-500" />,
+      icon: <SiCss className="h-8 w-8 text-blue-500" />,
       color: '#1572B6',
       bgColor: 'bg-blue-50 dark:bg-blue-950',
       borderColor: 'border-blue-200 dark:border-blue-800',
